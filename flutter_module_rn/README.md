@@ -1,11 +1,17 @@
 # flutter_module_rn
 
-A new flutter module project.
+## Getting started
 
-## Getting Started
+`$ npm install flutter_module_rn --save`
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
+### Mostly automatic installation
 
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
+`$ react-native link flutter_module_rn`
+
+## Usage
+```javascript
+import FlutterModuleRn from 'flutter_module_rn';
+
+// TODO: What to do with the module?
+FlutterModuleRn;
+```

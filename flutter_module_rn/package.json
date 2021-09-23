@@ -1,0 +1,40 @@
+{
+  "name": "flutter-module-rn",
+  "title": "Flutter module RN",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Flutter module as a React Native package",
+  "main": "index.js",
+  "files": [
+    "README.md",
+    "android-rn",
+    "index.js",
+    "ios-rn",
+    "FlutterModuleRn.podspec"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p-mazhnik/flutter-module-rn-package/flutter_module_rn.git",
+    "baseUrl": "https://github.com/p-mazhnik/flutter-module-rn-package/flutter_module_rn"
+  },
+  "homepage": "https://github.com/p-mazhnik/flutter-module-rn-package/flutter_module_rn",
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "p-mazhnik",
+    "url": "https://github.com/p-mazhnik"
+  },
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": ">=17.0.1",
+    "react-native": ">=0.65.0 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "17.0.2",
+    "react-native": "0.66.0-rc.3"
+  }
+}

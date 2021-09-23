@@ -46,3 +46,29 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Xcode
+#
+*.xccheckout
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Android/IntelliJ
+#
+.gradle
+local.properties
+*.iml
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore

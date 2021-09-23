@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "react": "17.0.2",
-    "react-native": "0.66.0-rc.3"
+    "react-native": "0.66.0-rc.3",
+    "flutter-module-rn": "file:../flutter_module_rn"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
