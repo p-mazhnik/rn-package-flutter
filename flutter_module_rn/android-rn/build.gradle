@@ -35,7 +35,11 @@ buildscript {
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
     buildToolsVersion safeExtGet('buildToolsVersion', DEFAULT_BUILD_TOOLS_VERSION)
-
+    buildTypes {
+        profile {
+            initWith debug
+        }
+    }
     defaultConfig {
         minSdkVersion safeExtGet('minSdkVersion', DEFAULT_MIN_SDK_VERSION)
         targetSdkVersion safeExtGet('targetSdkVersion', DEFAULT_TARGET_SDK_VERSION)
@@ -46,6 +50,8 @@ android {
         abortOnError false
     }
 }
+
+def storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
 
 repositories {
     mavenCentral()
@@ -59,11 +65,20 @@ repositories {
         // Android JSC is installed from npm
         url "$rootDir/../node_modules/jsc-android/dist"
     }
+    maven {
+        url "$rootDir/../node_modules/flutter-module-rn/build/host/outputs/repo"
+    }
+    maven {
+        url "$storageUrl/download.flutter.io"
+    }
     google()
     maven { url 'https://www.jitpack.io' }
 }
 
 dependencies {
+    debugImplementation 'com.example.flutter_module_rn:flutter_debug:1.0'
+    profileImplementation 'com.example.flutter_module_rn:flutter_profile:1.0'
+    releaseImplementation 'com.example.flutter_module_rn:flutter_release:1.0'
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
 }

@@ -19,6 +19,8 @@ buildscript {
     }
 }
 
+def storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
+
 allprojects {
     repositories {
         mavenCentral()
@@ -31,7 +33,15 @@ allprojects {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
-
+        // Define repositories for our flutter-module-rn package.
+        // We need to duplicate this because of the following issue:
+        // https://stackoverflow.com/questions/65089494/3rd-party-maven-dependency-in-react-native-npm-module
+        maven {
+            url "$rootDir/../node_modules/flutter-module-rn/build/host/outputs/repo"
+        }
+        maven {
+            url "$storageUrl/download.flutter.io"
+        }
         google()
         maven { url 'https://www.jitpack.io' }
     }
