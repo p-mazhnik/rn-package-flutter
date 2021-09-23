@@ -1,6 +1,13 @@
 <!-- AndroidManifest.xml -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.reactlibrary">
-
+    package="com.reactlibrary">
+    <application>
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize"
+            />
+    </application>
 </manifest>
