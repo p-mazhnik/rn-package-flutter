@@ -11,7 +11,7 @@ or
 ### Android
 
 Add following repositories in your `android/build.gradle` file:  
-```
+```kotlin
 repositories {
     maven {
         url "$rootDir/../node_modules/flutter-module-rn/build/host/outputs/repo"
