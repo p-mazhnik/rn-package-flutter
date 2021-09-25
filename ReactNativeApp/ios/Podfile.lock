@@ -70,6 +70,14 @@ PODS:
   - FlipperKit/SKIOSNetworkPlugin (0.99.0):
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
+  - Flutter (2.5.100)
+  - FlutterModuleFrameworks-Debug (1.0.0)
+  - FlutterModuleFrameworks-Release (1.0.0)
+  - FlutterModuleRn (1.0.0):
+    - Flutter
+    - FlutterModuleFrameworks-Debug
+    - FlutterModuleFrameworks-Release
+    - React-Core
   - fmt (6.2.1)
   - glog (0.3.5)
   - libevent (2.1.12)
@@ -367,6 +375,10 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitReactPlugin (= 0.99.0)
   - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.99.0)
   - FlipperKit/SKIOSNetworkPlugin (= 0.99.0)
+  - Flutter (from `../node_modules/flutter-module-rn/build/ios/framework/Release/Flutter.podspec`)
+  - FlutterModuleFrameworks-Debug (from `../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Debug.podspec`)
+  - FlutterModuleFrameworks-Release (from `../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Release.podspec`)
+  - FlutterModuleRn (from `../node_modules/flutter-module-rn`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -422,6 +434,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
+  Flutter:
+    :podspec: "../node_modules/flutter-module-rn/build/ios/framework/Release/Flutter.podspec"
+  FlutterModuleFrameworks-Debug:
+    :podspec: "../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Debug.podspec"
+  FlutterModuleFrameworks-Release:
+    :podspec: "../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Release.podspec"
+  FlutterModuleRn:
+    :path: "../node_modules/flutter-module-rn"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   RCT-Folly:
@@ -490,6 +510,10 @@ SPEC CHECKSUMS:
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
   FlipperKit: d8d346844eca5d9120c17d441a2f38596e8ed2b9
+  Flutter: f28fa567ae89ba0161dd1d550f3639b305b77201
+  FlutterModuleFrameworks-Debug: 08ba7e0c988421e423ed2ac579dec7d1f29f6aa3
+  FlutterModuleFrameworks-Release: fa504618f8de71ab887845b37008759e3a821194
+  FlutterModuleRn: a729f9e17f084b3f67f2e40d16fb7a013b5416d5
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
@@ -521,6 +545,6 @@ SPEC CHECKSUMS:
   Yoga: 0a23115c6d9b0ac3730491c2d47bcd4d7c9a9478
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 5f595a0308adaa18f96594aeadd23bd6d7b35504
+PODFILE CHECKSUM: c06581a471d7d875c29d331d6ab4001b7c66eb46
 
 COCOAPODS: 1.11.2

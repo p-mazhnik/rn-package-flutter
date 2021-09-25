@@ -13,16 +13,17 @@
     "FlutterModuleRn.podspec"
   ],
   "scripts": {
-    "build:android": "rimraf android && flutter build aar",
-    "publish": "ncp android-rn android",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "android:build": "rimraf android && flutter build aar && ncp android-rn android",
+    "ios:build": "flutter build ios-framework --cocoapods && yarn ios:zip",
+    "ios:zip": "cd ./build/ios/framework && zip -r Debug.zip Debug && zip -r Release.zip Release && find . -name \"*.xcframework\" -type d -exec rm -rf {} \\;",
+    "test": "flutter test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/p-mazhnik/flutter-module-rn-package/flutter_module_rn.git",
-    "baseUrl": "https://github.com/p-mazhnik/flutter-module-rn-package/flutter_module_rn"
+    "url": "git+https://github.com/p-mazhnik/rn-package-flutter.git",
+    "baseUrl": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn"
   },
-  "homepage": "https://github.com/p-mazhnik/flutter-module-rn-package/flutter_module_rn",
+  "homepage": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn",
   "keywords": [
     "react-native"
   ],
