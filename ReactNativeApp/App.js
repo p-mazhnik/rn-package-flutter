@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import type { Node } from 'react';
 import {
   Button,
   SafeAreaView,
@@ -16,7 +16,7 @@ import {
   useColorScheme,
 } from 'react-native';
 
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 
 import FlutterModuleRn from 'flutter-module-rn';
 

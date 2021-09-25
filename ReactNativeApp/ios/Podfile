@@ -1,5 +1,6 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# import `use_flutter_module_rn` function
 require_relative '../node_modules/flutter-module-rn/ios-rn/pods'
 
 platform :ios, '11.0'
@@ -24,6 +25,7 @@ target 'ReactNativeApp' do
   # you should disable the next line.
   use_flipper!()
 
+  # reference flutter-module-rn pods
   use_flutter_module_rn!()
 
   post_install do |installer|
