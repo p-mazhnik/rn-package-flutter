@@ -5,6 +5,7 @@
   "license": "MIT",
   "description": "Flutter module as a React Native package",
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "README.md",
     "android",
