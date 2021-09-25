@@ -2,9 +2,11 @@
 
 #import <React/RCTBridgeModule.h>
 @import Flutter;
+@import FlutterPluginRegistrant;
 
 @interface FlutterModuleRn : NSObject <RCTBridgeModule>
 
-+ (void)initWithFlutterEngine:(FlutterEngine * _Nonnull)flutterEngine;
+@property (nonatomic,strong) FlutterEngine *flutterEngine;
+// + (void)initWithFlutterEngine:(FlutterEngine * _Nonnull)flutterEngine;
 
 @end

@@ -4,14 +4,29 @@
 @import UIKit;
 #import "FlutterModuleRn.h"
 
-static FlutterEngine *_flutterEngine = nil;
+// static FlutterEngine *_flutterEngine = nil;
 
 @implementation FlutterModuleRn
 
 RCT_EXPORT_MODULE()
 
-+ (void)initWithFlutterEngine:(FlutterEngine * _Nonnull)flutterEngine {
-    _flutterEngine = flutterEngine;
+// + (void)initWithFlutterEngine:(FlutterEngine * _Nonnull)flutterEngine {
+//     _flutterEngine = flutterEngine;
+// }
+
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // Init Flutter Engine
+        self.flutterEngine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
+        [self.flutterEngine runWithEntrypoint:nil];
+        [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
+    }
+    return self;
 }
 
 RCT_EXPORT_METHOD(startFlutterActivity:(NSString *)stringArgument numberParameter:(nonnull NSNumber *)numberArgument callback:(RCTResponseSenderBlock)callback)
@@ -19,13 +34,14 @@ RCT_EXPORT_METHOD(startFlutterActivity:(NSString *)stringArgument numberParamete
     dispatch_async(dispatch_get_main_queue(), ^{
         // init FlutterViewController with engine provided by host app
         FlutterViewController *flutterViewController;
-         if (_flutterEngine == nil) {
-            // It is not recommended, but we can create a FlutterViewController with an implicit FlutterEngine
-            // https://flutter.dev/docs/development/add-to-app/ios/add-flutter-screen?tab=engine-objective-c-tab#alternatively---create-a-flutterviewcontroller-with-an-implicit-flutterengine
-            flutterViewController = [[FlutterViewController alloc] initWithProject:nil nibName:nil bundle:nil];
-         } else {
-            flutterViewController = [[FlutterViewController alloc] initWithEngine:_flutterEngine nibName:nil bundle:nil];
-         }
+        flutterViewController = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
+//          if (_flutterEngine == nil) {
+//             // It is not recommended, but we can create a FlutterViewController with an implicit FlutterEngine
+//             // https://flutter.dev/docs/development/add-to-app/ios/add-flutter-screen?tab=engine-objective-c-tab#alternatively---create-a-flutterviewcontroller-with-an-implicit-flutterengine
+//             flutterViewController = [[FlutterViewController alloc] initWithProject:nil nibName:nil bundle:nil];
+//          } else {
+//             flutterViewController = [[FlutterViewController alloc] initWithEngine:_flutterEngine nibName:nil bundle:nil];
+//          }
         // fix ui
         [flutterViewController setModalPresentationStyle:UIModalPresentationFullScreen];
 
