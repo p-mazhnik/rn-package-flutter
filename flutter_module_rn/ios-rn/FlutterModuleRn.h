@@ -7,6 +7,6 @@
 @interface FlutterModuleRn : NSObject <RCTBridgeModule>
 
 @property (nonatomic,strong) FlutterEngine *flutterEngine;
-// + (void)initWithFlutterEngine:(FlutterEngine * _Nonnull)flutterEngine;
++ (void)initWithFlutterEngine:(FlutterEngine * _Nonnull)flutterEngine;
 
 @end
