@@ -71,8 +71,10 @@ PODS:
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
   - Flutter (2.5.100)
-  - FlutterModuleFrameworks-Debug (1.0.0)
-  - FlutterModuleFrameworks-Release (1.0.0)
+  - FlutterModuleFrameworks-Debug (1.0.0):
+    - Flutter
+  - FlutterModuleFrameworks-Release (1.0.0):
+    - Flutter
   - FlutterModuleRn (1.0.0):
     - Flutter
     - FlutterModuleFrameworks-Debug
@@ -511,9 +513,9 @@ SPEC CHECKSUMS:
   Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
   FlipperKit: d8d346844eca5d9120c17d441a2f38596e8ed2b9
   Flutter: f28fa567ae89ba0161dd1d550f3639b305b77201
-  FlutterModuleFrameworks-Debug: 08ba7e0c988421e423ed2ac579dec7d1f29f6aa3
-  FlutterModuleFrameworks-Release: fa504618f8de71ab887845b37008759e3a821194
-  FlutterModuleRn: a729f9e17f084b3f67f2e40d16fb7a013b5416d5
+  FlutterModuleFrameworks-Debug: 274ccd4b98a7ec0ad3251f8bb1b03648cb6a4d24
+  FlutterModuleFrameworks-Release: 40affed9403e4630a2394ae0fcd7d9082d00332d
+  FlutterModuleRn: 5db65234da1bbd8636ee1c4ed45d78de58b59888
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
