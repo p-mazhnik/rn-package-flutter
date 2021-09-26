@@ -8,13 +8,13 @@
   "types": "index.d.ts",
   "files": [
     "README.md",
-    "android",
+    "android-rn",
     "index.js",
     "ios-rn",
     "FlutterModuleRn.podspec"
   ],
   "scripts": {
-    "android:build": "rimraf android && flutter build aar && ncp android-rn android",
+    "android:build": "flutter build aar",
     "ios:build": "flutter build ios-framework --cocoapods && yarn ios:zip",
     "ios:zip": "cd ./build/ios/framework && zip -r Debug.zip Debug && zip -r Release.zip Release && find . -name \"*.xcframework\" -type d -exec rm -rf {} \\;",
     "test": "flutter test"

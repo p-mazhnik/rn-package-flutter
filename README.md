@@ -22,16 +22,13 @@ Repository structure:
 - [create-react-native-module](https://github.com/brodybits/create-react-native-module)
 
 ## Found Libraries Limitations 🐞
-- [ ] React Native: gradle tasks run only if name of the directory is `android`,
-even if different directory specified in `react-native.config.js`,
-https://github.com/react-native-community/cli/issues/1103
 - [ ] React Native: need to duplicate in host app custom 3rd party maven 
-dependencies used in react-native npm module, 
+dependencies used in react-native npm module 
 https://stackoverflow.com/questions/65089494/3rd-party-maven-dependency-in-react-native-npm-module
-- [ ] CocoaPods: can't define pod configuration ("Debug" or "Release") in `.podspec` file,
-https://github.com/CocoaPods/CocoaPods/issues/2847,
+- [ ] CocoaPods: can't define pod configuration ("Debug" or "Release") in `.podspec` file  
+https://github.com/CocoaPods/CocoaPods/issues/2847,  
 https://github.com/CocoaPods/CocoaPods/issues/6338
-- [ ] CocoaPods: can't define local directory in the podspec `source` property, 
+- [ ] CocoaPods: can't define local directory in the podspec `source` property  
 https://github.com/CocoaPods/cocoapods-packager/issues/216
 
 ## Learn More 📖
