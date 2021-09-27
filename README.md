@@ -5,11 +5,21 @@ https://img.shields.io/badge/p.mazhnik-%23000000.svg?style=for-the-badge&logo=da
 )](
 https://www.medium.com/@p.mazhnik/
 )
+[![Dev.to](https://img.shields.io/badge/mazhnik-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white)](
+https://dev.to/mazhnik
+)
+[![LinkedIn](
+https://img.shields.io/badge/p--mazhnik-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
+)](
+https://www.linkedin.com/in/p-mazhnik/
+)
 
-Source code of the Medium article about including Flutter
+Source code of the article about including Flutter
 module as a React Native package.
 
-[How to include Flutter module as a React Native package](https://medium.com/@p.mazhnik/how-to-include-flutter-module-as-a-react-native-package-b115846de1ca)
+- [Medium](https://medium.com/@p.mazhnik/how-to-include-flutter-module-as-a-react-native-package-b115846de1ca)
+- [Dev.to](https://dev.to/mazhnik/how-to-include-flutter-module-as-a-react-native-package-5b00)
+- [GitHub](./article.md)
 
 Repository structure:
 - `ReactNativeApp` directory contains host app code written in React Native, JavaScript
