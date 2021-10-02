@@ -33,7 +33,7 @@ Repository structure:
 
 ## Found Libraries Limitations 🐞
 - [ ] React Native: need to duplicate in host app custom 3rd party maven 
-dependencies used in react-native npm module 
+dependencies used in react-native npm module  
 https://stackoverflow.com/questions/65089494/3rd-party-maven-dependency-in-react-native-npm-module
 - [ ] CocoaPods: can't define pod configuration ("Debug" or "Release") in `.podspec` file  
 https://github.com/CocoaPods/CocoaPods/issues/2847,  

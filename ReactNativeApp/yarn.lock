@@ -5194,10 +5194,10 @@ react-native-codegen@^0.0.7:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-react-native@0.66.0-rc.3:
-  version "0.66.0-rc.3"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.66.0-rc.3.tgz#3bf76e81f151a11697247ed47985aa9762a0d946"
-  integrity sha512-iSdMqPZI26ua/8ENgsm8y1n0tNstG0NLMM921SsnI9ci9g1Lx6vDcPjZYQ3dKQh7gpg5lr5D1XAmbHW5ze8tgA==
+react-native@0.66.0:
+  version "0.66.0"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.66.0.tgz#99bdd83a9a612a71b94242767989d666d445b007"
+  integrity sha512-m26TKwzsfHVdZ1hDG+7mZ4M4ftxFFZrhtiT0OXuwfBzmNtB3xhsJtYszPeizw33c9YNp8rvehKT3c4ldDCW6kA==
   dependencies:
     "@jest/create-cache-key-function" "^27.0.1"
     "@react-native-community/cli" "^6.0.0"

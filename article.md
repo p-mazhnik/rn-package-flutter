@@ -33,7 +33,7 @@ XCode, CocoaPods ≥ **1.11.0** (this version is important)
 1. Initialize host RN (React Native) project:
 
 ```shell
-$ npx react-native init ReactNativeApp --version 0.66.0-rc.4
+$ npx react-native init ReactNativeApp
 ```
 
 2. Create Flutter module:
