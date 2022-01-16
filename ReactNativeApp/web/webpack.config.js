@@ -5,6 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const appDirectory = path.resolve(__dirname, '../');
 const { presets } = require(`${appDirectory}/babel.config.js`);
@@ -71,7 +72,14 @@ module.exports = {
   // ...the rest of your config
 
   module: {
-    rules: [babelLoaderConfiguration, imageLoaderConfiguration],
+    rules: [
+      babelLoaderConfiguration,
+      imageLoaderConfiguration,
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+    ],
   },
 
   resolve: {
@@ -90,6 +98,18 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       __DEV__,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'node_modules/flutter-module-rn/build/web/assets',
+          to: 'assets',
+        },
+        {
+          from: 'node_modules/flutter-module-rn/build/web/icons',
+          to: 'icons',
+        },
+      ],
     }),
   ],
 };

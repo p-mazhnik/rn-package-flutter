@@ -5,7 +5,7 @@ const { FlutterModuleRn } = NativeModules;
 
 const FlutterScreen = () => {
   useEffect(() => {
-    FlutterModuleRn.startFlutterActivity('', 0, (text: string) => {
+    FlutterModuleRn.startFlutterActivity('', 0, (text) => {
       console.log(text);
     });
   }, [])
