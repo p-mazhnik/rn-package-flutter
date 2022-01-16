@@ -28,6 +28,7 @@ Repository structure:
 ## Main Libraries Used 🛠
 - [Flutter](https://flutter.dev/)
 - [React Native](https://reactnative.dev/)
+- [React Native Web](https://necolas.github.io/react-native-web/)
 - [CocoaPods](https://cocoapods.org/about)
 - [create-react-native-module](https://github.com/brodybits/create-react-native-module)
 
