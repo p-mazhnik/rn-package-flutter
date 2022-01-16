@@ -15,15 +15,15 @@ https://www.linkedin.com/in/p-mazhnik/
 )
 
 Source code of the article about including Flutter
-module as a React Native package.
+module as a React Native package ([rn-package-flutter/article-1](https://github.com/p-mazhnik/rn-package-flutter/tree/article-1) branch).
 
 - [Medium](https://medium.com/@p.mazhnik/how-to-include-flutter-module-as-a-react-native-package-b115846de1ca)
 - [Dev.to](https://dev.to/mazhnik/how-to-include-flutter-module-as-a-react-native-package-5b00)
 - [GitHub](./article.md)
 
 Repository structure:
-- `ReactNativeApp` directory contains host app code written in React Native, JavaScript
-- `flutter_module_rn` directory contains package code written in Flutter, Dart
+- `ReactNativeApp` directory contains host app code written in React Native Web, TypeScript
+- `flutter_module_rn` directory contains package code written in React Native Web + Flutter, Dart
 
 ## Main Libraries Used 🛠
 - [Flutter](https://flutter.dev/)
