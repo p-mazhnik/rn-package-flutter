@@ -17,14 +17,14 @@ import {
   useColorScheme,
 } from 'react-native';
 
-import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
-
-import FlutterModuleRn from 'flutter-module-rn';
-
-const startFlutterScreen = () => {
-  FlutterModuleRn.startFlutterActivity('', 0, (text: string) => {
-    console.log(text);
-  });
+// import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
+const Colors = {
+  white: '#fff',
+  black: '#000',
+  light: '#ddd',
+  dark: '#333',
+  lighter: '#eee',
+  darker: '#111',
 };
 
 const App: React.FC = () => {
@@ -32,6 +32,7 @@ const App: React.FC = () => {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    flex: 1,
   };
 
   return (
@@ -40,8 +41,8 @@ const App: React.FC = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
-        <Button title={'Start Flutter Screen'} onPress={startFlutterScreen} />
+        {/*<Header />*/}
+        <Button title={'Start Flutter Screen'} onPress={() => {}} />
       </ScrollView>
     </SafeAreaView>
   );
