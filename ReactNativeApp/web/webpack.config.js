@@ -16,6 +16,11 @@ const __DEV__ = process.env.NODE_ENV === 'development';
 // published. If you depend on uncompiled packages they may cause webpack build
 // errors. To fix this webpack can be configured to compile to the necessary
 // `node_module`.
+const compileNodeModules = [
+  // Add every react-native package that needs compiling
+  'react-native-uncompiled',
+  'flutter-module-rn',
+].map(moduleName => path.resolve(appDirectory, `node_modules/${moduleName}`));
 const babelLoaderConfiguration = {
   test: /\.js$|tsx?$/,
   // Add every directory that needs to be compiled by Babel during the build.
@@ -23,7 +28,7 @@ const babelLoaderConfiguration = {
     path.resolve(appDirectory, 'index.js'),
     path.resolve(appDirectory, 'App.tsx'),
     path.resolve(appDirectory, 'src'),
-    path.resolve(appDirectory, 'node_modules/react-native-uncompiled'),
+    ...compileNodeModules,
   ],
   use: {
     loader: 'babel-loader',

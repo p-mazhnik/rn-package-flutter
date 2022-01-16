@@ -16,6 +16,12 @@ import {
   StatusBar,
   useColorScheme,
 } from 'react-native';
+import { NavigationContainer, ParamListBase } from '@react-navigation/native';
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import { FlutterScreen } from 'flutter-module-rn';
 
 // import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 const Colors = {
@@ -27,24 +33,38 @@ const Colors = {
   darker: '#111',
 };
 
-const App: React.FC = () => {
+const Stack = createNativeStackNavigator();
+
+function HomeScreen({ navigation }: NativeStackScreenProps<ParamListBase>) {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     flex: 1,
   };
-
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        {/*<Header />*/}
-        <Button title={'Start Flutter Screen'} onPress={() => {}} />
+        <Button
+          title={'Start Flutter Screen'}
+          onPress={() => navigation.navigate('Flutter')}
+        />
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+const App: React.FC = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Flutter" component={FlutterScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
