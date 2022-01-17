@@ -39,17 +39,39 @@ end
 
 Run `cd ios && pod install`
 
+### Web
+This is uncompiled package and may cause webpack build errors. 
+To fix this your webpack needs to be configured to compile this module.
+Please note that `html-loader` is required for this package.
+
+To copy all the needed assets to host app add [Copy-Webpack-Plugin](https://www.npmjs.com/package/copy-webpack-plugin)
+to your webpack configuration:
+```js
+plugins: [
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: 'node_modules/flutter-module-rn/build/web/assets',
+        to: 'assets',
+      },
+      {
+        from: 'node_modules/flutter-module-rn/build/web/icons',
+        to: 'icons',
+      },
+    ],
+  }),
+]
+```
+
 ## Usage
 ```javascript
-import FlutterModuleRn from 'flutter_module_rn';
+import { FlutterScreen } from 'flutter-module-rn';
 
-FlutterModuleRn.startFlutterActivity('', 0, (text: string) => {
-  console.log(text);
-});
+<Stack.Screen name="Flutter" component={FlutterScreen} />
 ```
 
 ## Development
 We use [Flutter](https://flutter.dev/) for development.
 
-To build artifacts you can run `yarn android:build` 
-and `yarn ios:build`
+To build artifacts you can run `yarn android:build`, 
+`yarn ios:build` or `yarn web:build`

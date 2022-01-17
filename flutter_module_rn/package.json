@@ -17,6 +17,7 @@
     "android:build": "flutter build aar",
     "ios:build": "flutter build ios-framework --cocoapods && yarn ios:zip",
     "ios:zip": "cd ./build/ios/framework && zip -r Debug.zip Debug && zip -r Release.zip Release && find . -name \"*.xcframework\" -type d -exec rm -rf {} \\;",
+    "web:build": "flutter build web",
     "test": "flutter test"
   },
   "repository": {
@@ -39,8 +40,8 @@
   },
   "devDependencies": {
     "ncp": "^2.0.0",
-    "react": "17.0.2",
-    "react-native": "0.66.0-rc.3",
+    "@types/react": "^17",
+    "@types/react-native": "0.66.4",
     "rimraf": "^3.0.2"
   }
 }

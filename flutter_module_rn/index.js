@@ -1,7 +1,3 @@
 // main index.js
 
-import { NativeModules } from 'react-native';
-
-const { FlutterModuleRn } = NativeModules;
-
-export default FlutterModuleRn;
+export { default as FlutterScreen } from './src/FlutterScreen';
