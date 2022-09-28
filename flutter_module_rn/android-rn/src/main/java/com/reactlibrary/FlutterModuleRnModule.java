@@ -30,14 +30,34 @@ public class FlutterModuleRnModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void startFlutterActivity(String stringArgument, int numberArgument, Callback callback) {
+    public void startFlutterActivity(String eventName, String args, Callback callback) {
         Activity currentActivity = reactContext.getCurrentActivity();
         // we can pass arguments to the Intent
         currentActivity.startActivity(
                 new FlutterActivity
                         .NewEngineIntentBuilder(FlutterModuleActivity.class)
                         .build(currentActivity)
+                        .putExtra(FlutterModuleActivity.INITIAL_EVENT, eventName)
+                        .putExtra(FlutterModuleActivity.INITIAL_ARGS, args)
         );
-        callback.invoke("Received numberArgument: " + numberArgument + " stringArgument: " + stringArgument);
+        callback.invoke("Received eventName: " + eventName + ", args: " + args);
+    }
+
+    @ReactMethod
+    public void sendEvent(String eventName, String args) {
+        Activity currentActivity = reactContext.getCurrentActivity();
+        if (currentActivity instanceof FlutterModuleActivity) {
+            ((FlutterModuleActivity) currentActivity).sendEventToFlutter(eventName, args);
+        }
+    }
+
+    @ReactMethod
+    public void addListener(String eventName) {
+        // Keep: Required for RN built in Event Emitter Calls.
+    }
+
+    @ReactMethod
+    public void removeListeners(Integer count) {
+        // Keep: Required for RN built in Event Emitter Calls.
     }
 }

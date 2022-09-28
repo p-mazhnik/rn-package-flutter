@@ -49,6 +49,20 @@ class _MyHomePageState extends State<MyHomePage> {
   static const platform = MethodChannel('pavel/flutter');
 
   int _counter = 0;
+  bool _received = false;
+
+  @override
+  void initState() {
+    platform.setMethodCallHandler((call) async {
+      if (call.method == 'setCounterValue') {
+        setState(() {
+          _received = true;
+          _counter = int.parse(call.arguments as String);
+        });
+      }
+    });
+    super.initState();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -107,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
+            if (_received) const Text('(counter set from initial value)'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,

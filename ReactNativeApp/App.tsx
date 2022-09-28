@@ -15,9 +15,10 @@ import {
   ScrollView,
   StatusBar,
   Text,
+  TextInput,
   View,
 } from 'react-native';
-import { NavigationContainer, ParamListBase } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
@@ -38,13 +39,14 @@ const Stack = createNativeStackNavigator();
 
 type RootStackParamList = {
   Home: { counter: number };
-  Flutter: undefined;
+  Flutter: { initialCounterValue: number };
 };
 
 function HomeScreen({
   navigation,
   route,
 }: NativeStackScreenProps<RootStackParamList, 'Home'>) {
+  const [initialCounterValue, setCounter] = useState<number>(0);
   const backgroundStyle = {
     backgroundColor: Colors.lighter,
     flex: 1,
@@ -57,13 +59,28 @@ function HomeScreen({
         style={backgroundStyle}>
         <Button
           title={'Start Flutter Screen'}
-          onPress={() => navigation.navigate('Flutter')}
+          onPress={() =>
+            navigation.navigate({
+              name: 'Flutter',
+              params: { initialCounterValue },
+              merge: true,
+            })
+          }
         />
+        <View>
+          <Text>Enter initial counter value</Text>
+          <TextInput
+            keyboardType="numeric"
+            onChangeText={text => setCounter(Number(text))}
+            value={initialCounterValue.toString()}
+            maxLength={10}
+          />
+        </View>
         <View style={{ alignSelf: 'center' }}>
           <Text>
             You have pushed the button on the Flutter screen this many times:
           </Text>
-          <Text style={{ textAlign: 'center' }}>{route.params?.counter}</Text>
+          <Text style={{ textAlign: 'center' }}>{route.params.counter}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -72,7 +89,8 @@ function HomeScreen({
 
 function FlutterScreenWrapper({
   navigation,
-}: NativeStackScreenProps<ParamListBase>) {
+  route,
+}: NativeStackScreenProps<RootStackParamList, 'Flutter'>) {
   const [counter, setCounter] = useState<number>(0);
   const onCounterIncrement = (value: number) => {
     console.log(`onCounterIncrement: ${value}`);
@@ -84,6 +102,7 @@ function FlutterScreenWrapper({
   }, [counter, navigation]);
   return (
     <FlutterScreen
+      initialCounterValue={route.params.initialCounterValue}
       onCounterIncrement={onCounterIncrement}
       onScreenClose={onScreenClose}
     />
@@ -99,7 +118,11 @@ const App: React.FC = () => {
           component={HomeScreen}
           initialParams={{ counter: 0 }}
         />
-        <Stack.Screen name="Flutter" component={FlutterScreenWrapper} />
+        <Stack.Screen
+          name="Flutter"
+          component={FlutterScreenWrapper}
+          initialParams={{ initialCounterValue: 0 }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

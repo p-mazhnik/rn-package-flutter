@@ -2,15 +2,15 @@ import { ActivityIndicator, NativeEventEmitter, NativeModules, Platform, Text, V
 import React, { useEffect } from 'react'
 
 const { FlutterModuleRn } = NativeModules;
+const eventEmitter = new NativeEventEmitter(FlutterModuleRn);
 
-const FlutterScreen = ({ onCounterIncrement, onScreenClose }) => {
+const FlutterScreen = ({ initialCounterValue, onCounterIncrement, onScreenClose }) => {
   useEffect(() => {
-    FlutterModuleRn.startFlutterActivity('', 0, (text) => {
+    FlutterModuleRn.startFlutterActivity('setCounterValue', initialCounterValue.toString(), (text) => {
       console.log(text);
     });
   }, [])
   useEffect(() => {
-    const eventEmitter = new NativeEventEmitter(FlutterModuleRn);
     const listener1 = eventEmitter.addListener('incrementCounter', (event) => {
       onCounterIncrement(event);
     });

@@ -1,5 +1,7 @@
 package com.reactlibrary;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.FlutterEngine;
@@ -10,6 +12,9 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 public class FlutterModuleActivity extends FlutterActivity {
     private static final String CHANNEL = "pavel/flutter";
+
+    public static final String INITIAL_EVENT = "INITIAL_EVENT";
+    public static final String INITIAL_ARGS = "INITIAL_ARGS";
 
     // React Native event emitter. Uset to send events to the host React Native app
     private DeviceEventManagerModule.RCTDeviceEventEmitter reactNativeEventEmitter = null;
@@ -38,5 +43,17 @@ public class FlutterModuleActivity extends FlutterActivity {
                     result.success(null);
                 }
         );
+    }
+
+    @Override
+    public void onFlutterUiDisplayed() {
+        Bundle extras = this.getIntent().getExtras();
+        String eventName = extras.getString(INITIAL_EVENT);
+        String args = extras.getString(INITIAL_ARGS);
+        sendEventToFlutter(eventName, args);
+    }
+
+    public void sendEventToFlutter(String eventName, String args) {
+        channel.invokeMethod(eventName, args);
     }
 }
