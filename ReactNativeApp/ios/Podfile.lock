@@ -70,7 +70,7 @@ PODS:
   - FlipperKit/SKIOSNetworkPlugin (0.99.0):
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
-  - Flutter (2.5.100)
+  - Flutter (3.0.500)
   - FlutterModuleFrameworks-Debug (1.0.0):
     - Flutter
   - FlutterModuleFrameworks-Release (1.0.0):
@@ -382,7 +382,7 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitReactPlugin (= 0.99.0)
   - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.99.0)
   - FlipperKit/SKIOSNetworkPlugin (= 0.99.0)
-  - Flutter (from `../node_modules/flutter-module-rn/build/ios/framework/Release/Flutter.podspec`)
+  - Flutter (from `../node_modules/flutter-module-rn/build/ios/framework/Flutter.podspec`)
   - FlutterModuleFrameworks-Debug (from `../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Debug.podspec`)
   - FlutterModuleFrameworks-Release (from `../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Release.podspec`)
   - FlutterModuleRn (from `../node_modules/flutter-module-rn`)
@@ -444,7 +444,7 @@ EXTERNAL SOURCES:
   FBReactNativeSpec:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   Flutter:
-    :podspec: "../node_modules/flutter-module-rn/build/ios/framework/Release/Flutter.podspec"
+    :podspec: "../node_modules/flutter-module-rn/build/ios/framework/Flutter.podspec"
   FlutterModuleFrameworks-Debug:
     :podspec: "../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Debug.podspec"
   FlutterModuleFrameworks-Release:
@@ -523,7 +523,7 @@ SPEC CHECKSUMS:
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
   FlipperKit: d8d346844eca5d9120c17d441a2f38596e8ed2b9
-  Flutter: f28fa567ae89ba0161dd1d550f3639b305b77201
+  Flutter: 4d311a777d4e380946ac9fb314e1a7d831d102e0
   FlutterModuleFrameworks-Debug: 274ccd4b98a7ec0ad3251f8bb1b03648cb6a4d24
   FlutterModuleFrameworks-Release: 40affed9403e4630a2394ae0fcd7d9082d00332d
   FlutterModuleRn: 5db65234da1bbd8636ee1c4ed45d78de58b59888
@@ -562,4 +562,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f5fd1cfd714624b1cc65871a44e89067c1319165
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
