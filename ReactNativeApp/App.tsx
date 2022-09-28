@@ -8,13 +8,14 @@
  * @format
  */
 
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  useColorScheme,
+  Text,
+  View,
 } from 'react-native';
 import { NavigationContainer, ParamListBase } from '@react-navigation/native';
 import {
@@ -35,16 +36,22 @@ const Colors = {
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen({ navigation }: NativeStackScreenProps<ParamListBase>) {
-  const isDarkMode = useColorScheme() === 'dark';
+type RootStackParamList = {
+  Home: { counter: number };
+  Flutter: undefined;
+};
 
+function HomeScreen({
+  navigation,
+  route,
+}: NativeStackScreenProps<RootStackParamList, 'Home'>) {
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: Colors.lighter,
     flex: 1,
   };
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
@@ -52,8 +59,34 @@ function HomeScreen({ navigation }: NativeStackScreenProps<ParamListBase>) {
           title={'Start Flutter Screen'}
           onPress={() => navigation.navigate('Flutter')}
         />
+        <View style={{ alignSelf: 'center' }}>
+          <Text>
+            You have pushed the button on the Flutter screen this many times:
+          </Text>
+          <Text style={{ textAlign: 'center' }}>{route.params?.counter}</Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+function FlutterScreenWrapper({
+  navigation,
+}: NativeStackScreenProps<ParamListBase>) {
+  const [counter, setCounter] = useState<number>(0);
+  const onCounterIncrement = (value: number) => {
+    console.log(`onCounterIncrement: ${value}`);
+    setCounter(value);
+  };
+  const onScreenClose = useCallback(() => {
+    console.log(`onScreenClose: ${counter}`);
+    navigation.navigate({ name: 'Home', params: { counter }, merge: true });
+  }, [counter, navigation]);
+  return (
+    <FlutterScreen
+      onCounterIncrement={onCounterIncrement}
+      onScreenClose={onScreenClose}
+    />
   );
 }
 
@@ -61,8 +94,12 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Flutter" component={FlutterScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          initialParams={{ counter: 0 }}
+        />
+        <Stack.Screen name="Flutter" component={FlutterScreenWrapper} />
       </Stack.Navigator>
     </NavigationContainer>
   );

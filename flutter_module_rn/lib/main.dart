@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(const MyApp());
 
@@ -45,6 +46,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const platform = MethodChannel('pavel/flutter');
+
   int _counter = 0;
 
   void _incrementCounter() {
@@ -56,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    platform.invokeMethod('incrementCounter', {'data': '$_counter'});
   }
 
   @override
@@ -71,6 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            platform.invokeMethod('closeFlutterScreen');
+            // todo: web support
+            SystemNavigator.pop();
+          },
+        ),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it

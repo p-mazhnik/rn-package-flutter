@@ -12,6 +12,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 
 import io.flutter.embedding.android.FlutterActivity;
+import com.reactlibrary.FlutterModuleActivity;
 
 public class FlutterModuleRnModule extends ReactContextBaseJavaModule {
 
@@ -33,7 +34,9 @@ public class FlutterModuleRnModule extends ReactContextBaseJavaModule {
         Activity currentActivity = reactContext.getCurrentActivity();
         // we can pass arguments to the Intent
         currentActivity.startActivity(
-                FlutterActivity.createDefaultIntent(currentActivity)
+                new FlutterActivity
+                        .NewEngineIntentBuilder(FlutterModuleActivity.class)
+                        .build(currentActivity)
         );
         callback.invoke("Received numberArgument: " + numberArgument + " stringArgument: " + stringArgument);
     }
