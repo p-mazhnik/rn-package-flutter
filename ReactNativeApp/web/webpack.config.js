@@ -102,12 +102,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'node_modules/flutter-module-rn/build/web/assets',
-          to: 'assets',
-        },
-        {
-          from: 'node_modules/flutter-module-rn/build/web/icons',
-          to: 'icons',
+          from: 'node_modules/flutter-module-rn/build/web',
+          to: 'flutter',
         },
       ],
     }),

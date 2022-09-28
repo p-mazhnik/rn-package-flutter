@@ -13,7 +13,8 @@
     "web:build": "rimraf web/dist/ && webpack --mode=production --config web/webpack.config.js",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "upgrade-flutter": "yarn upgrade flutter-module-rn"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.6",

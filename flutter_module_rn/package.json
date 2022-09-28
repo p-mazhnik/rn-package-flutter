@@ -17,7 +17,7 @@
     "android:build": "flutter build aar",
     "ios:build": "flutter build ios-framework --cocoapods && yarn ios:zip",
     "ios:zip": "cd ./build/ios/framework && zip -r Debug.zip Debug && zip -r Release.zip Release && find . -name \"*.xcframework\" -type d -exec rm -rf {} \\;",
-    "web:build": "flutter build web",
+    "web:build": "flutter build web --base-href /flutter/",
     "test": "flutter test"
   },
   "repository": {
