@@ -4,9 +4,14 @@
 @import UIKit;
 #import "FlutterModuleRn.h"
 
+NSString* const CHANNEL = @"pavel/flutter";
+
 static FlutterEngine *_flutterEngine = nil;
 
 @implementation FlutterModuleRn
+{
+  bool hasListeners;
+}
 
 RCT_EXPORT_MODULE()
 
@@ -30,7 +35,23 @@ RCT_EXPORT_MODULE()
     return self;
 }
 
-RCT_EXPORT_METHOD(startFlutterActivity:(NSString *)stringArgument numberParameter:(nonnull NSNumber *)numberArgument callback:(RCTResponseSenderBlock)callback)
+// Will be called when this module's first listener is added.
+-(void)startObserving {
+    hasListeners = YES;
+    // Set up any upstream listeners or background tasks as necessary
+}
+
+// Will be called when this module's last listener is removed, or on dealloc.
+-(void)stopObserving {
+    hasListeners = NO;
+    // Remove upstream listeners, stop unnecessary background tasks
+}
+
+- (NSArray<NSString *> *)supportedEvents {
+    return @[@"incrementCounter", @"closeFlutterScreen", @"setCounterValue"];
+}
+
+RCT_EXPORT_METHOD(startFlutterActivity:(NSString *)eventName args:(NSString *)args callback:(RCTResponseSenderBlock)callback)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         FlutterViewController *flutterViewController;
@@ -46,10 +67,38 @@ RCT_EXPORT_METHOD(startFlutterActivity:(NSString *)stringArgument numberParamete
         // fix ui
         [flutterViewController setModalPresentationStyle:UIModalPresentationFullScreen];
 
+        FlutterMethodChannel* channel = [FlutterMethodChannel
+                                         methodChannelWithName: CHANNEL
+                                         binaryMessenger: flutterViewController.binaryMessenger];
+        self.channel = channel;
+
+        [channel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
+          // This method is invoked on the UI thread.
+          if (self->hasListeners) { // Only send events if anyone is listening
+            NSString* data = call.arguments[@"data"];
+            [self sendEventWithName:call.method body:data];
+          }
+          result(nil);
+        }];
+
+        void (^flutterViewDidRender)(void) = ^() {
+          // set initial data
+          [self sendEvent: eventName args: args];
+        };
+
+        [flutterViewController setFlutterViewDidRenderCallback: flutterViewDidRender];
+
         UIViewController *rootController = UIApplication.sharedApplication.delegate.window.rootViewController;
         [rootController presentViewController:flutterViewController animated:YES completion:nil];
-        callback(@[[NSString stringWithFormat: @"numberArgument: %@ stringArgument: %@", numberArgument, stringArgument]]);
+        callback(@[[NSString stringWithFormat: @"Received eventName: %@, args: %@", eventName, args]]);
     });
+}
+
+RCT_EXPORT_METHOD(sendEvent:(NSString *)eventName args:(NSString *)args)
+{
+  if (self.channel != nil) {
+    [self.channel invokeMethod: eventName arguments: args];
+  }
 }
 
 @end

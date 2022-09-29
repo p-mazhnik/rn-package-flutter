@@ -9,6 +9,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "install:ios": "cd ios && pod repo update && pod update Flutter FlutterModuleFrameworks-Debug FlutterModuleFrameworks-Release && pod install",
     "web": "webpack serve --mode=development --config web/webpack.config.js --hot",
     "web:build": "rimraf web/dist/ && webpack --mode=production --config web/webpack.config.js",
     "start": "react-native start",

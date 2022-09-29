@@ -1,9 +1,16 @@
 import * as React from 'react'
 
 interface FlutterModuleRn {
-  startFlutterActivity: (arg1: string, arg2: number, callback: (text: string) => void) => void;
+  startFlutterActivity: (initialEvent: string, args: string, callback: (text: string) => void) => void;
+  sendEvent: (event: string, args?: string) => void;
 }
 
-declare const FlutterScreen: React.FC
+interface FlutterScreenProps {
+  onCounterIncrement: (value: number) => void;
+  onScreenClose: () => void;
+  initialCounterValue: number;
+}
+
+declare const FlutterScreen: React.FC<FlutterScreenProps>
 
 export default FlutterScreen
