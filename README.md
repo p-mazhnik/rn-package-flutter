@@ -26,6 +26,7 @@ Repository structure:
 - `flutter_module_rn` directory contains package code written in React Native Web + Flutter, Dart
 
 ## Main Libraries Used 🛠
+Tested with Flutter **3.10** and React-Native **0.72**.
 - [Flutter](https://flutter.dev/)
 - [React Native](https://reactnative.dev/)
 - [React Native Web](https://necolas.github.io/react-native-web/)
