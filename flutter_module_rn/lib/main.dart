@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (_received) const Text('(counter set from initial value)'),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),

@@ -9,8 +9,6 @@
 .pub/
 /build/
 
-# Web related
-lib/generated_plugin_registrant.dart
 
 .DS_Store
 .idea/
