@@ -69,11 +69,11 @@ PODS:
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
   - Flutter (3.10.500)
-  - FlutterModuleFrameworks-Debug (1.1.0):
+  - FlutterModuleFrameworks-Debug (1.1.2):
     - Flutter
-  - FlutterModuleFrameworks-Release (1.1.0):
+  - FlutterModuleFrameworks-Release (1.1.2):
     - Flutter
-  - FlutterModuleRn (1.1.0):
+  - FlutterModuleRn (1.1.2):
     - Flutter
     - FlutterModuleFrameworks-Debug
     - FlutterModuleFrameworks-Release
@@ -534,8 +534,8 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.182.0)
   - FlipperKit/SKIOSNetworkPlugin (= 0.182.0)
   - Flutter (from `../node_modules/flutter-module-rn/build/ios/framework/Flutter.podspec`)
-  - FlutterModuleFrameworks-Debug (from `../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Debug.podspec`)
-  - FlutterModuleFrameworks-Release (from `../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Release.podspec`)
+  - FlutterModuleFrameworks-Debug (from `../node_modules/flutter-module-rn/ios/Podspecs/FlutterModuleRn-Debug.podspec`)
+  - FlutterModuleFrameworks-Release (from `../node_modules/flutter-module-rn/ios/Podspecs/FlutterModuleRn-Release.podspec`)
   - FlutterModuleRn (from `../node_modules/flutter-module-rn`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
@@ -608,9 +608,9 @@ EXTERNAL SOURCES:
   Flutter:
     :podspec: "../node_modules/flutter-module-rn/build/ios/framework/Flutter.podspec"
   FlutterModuleFrameworks-Debug:
-    :podspec: "../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Debug.podspec"
+    :podspec: "../node_modules/flutter-module-rn/ios/Podspecs/FlutterModuleRn-Debug.podspec"
   FlutterModuleFrameworks-Release:
-    :podspec: "../node_modules/flutter-module-rn/ios-rn/Podspecs/FlutterModuleRn-Release.podspec"
+    :podspec: "../node_modules/flutter-module-rn/ios/Podspecs/FlutterModuleRn-Release.podspec"
   FlutterModuleRn:
     :path: "../node_modules/flutter-module-rn"
   glog:
@@ -704,9 +704,9 @@ SPEC CHECKSUMS:
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   FlipperKit: 2efad7007d6745a3f95e4034d547be637f89d3f6
   Flutter: cd5df16d85154222fa94e7c52585ae08c7f277ac
-  FlutterModuleFrameworks-Debug: ea2d338b37a76cef78ea2995657d9cd11fb082be
-  FlutterModuleFrameworks-Release: acc6dc439f78625b1243474b9a7ef17ef1f62841
-  FlutterModuleRn: 37e1e64ae57507ee8c80ebcc527dbe289da3b531
+  FlutterModuleFrameworks-Debug: 8ae70ec2170d9a7146abdfc7a400f58f3fb6f6bf
+  FlutterModuleFrameworks-Release: 14ddf8a143ba88237fa755c256575d6c9ca607ee
+  FlutterModuleRn: db0ea867b24a3b84e25a3f4f8eaa2b2a462ed76a
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   hermes-engine: 9df83855a0fd15ef8eb61694652bae636b0c466e
@@ -750,6 +750,6 @@ SPEC CHECKSUMS:
   Yoga: 65286bb6a07edce5e4fe8c90774da977ae8fc009
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: d45374073805b4a6f0a1cc281cb985f8a0ba0d4d
+PODFILE CHECKSUM: 18505c092f445ac289a1ed116d55fa17b7bd5add
 
 COCOAPODS: 1.12.1

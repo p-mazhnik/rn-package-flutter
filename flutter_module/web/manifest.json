@@ -1,6 +1,6 @@
 {
-    "name": "flutter_module_rn",
-    "short_name": "flutter_module_rn",
+    "name": "flutter_module",
+    "short_name": "flutter_module",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

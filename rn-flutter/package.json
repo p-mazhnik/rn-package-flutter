@@ -1,31 +1,24 @@
 {
   "name": "flutter-module-rn",
   "title": "Flutter module RN",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "license": "MIT",
   "description": "Flutter module as a React Native package",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "README.md",
-    "android-rn",
+    "android",
     "index.js",
-    "ios-rn",
+    "ios",
     "FlutterModuleRn.podspec"
   ],
-  "scripts": {
-    "android:build": "flutter build aar",
-    "ios:build": "flutter build ios-framework --cocoapods --no-profile && yarn ios:zip",
-    "ios:zip": "cd ./build/ios/framework && mv Release/Flutter.podspec . && zip -rm Debug.zip Debug && zip -rm Release.zip Release",
-    "web:build": "flutter build web --base-href /flutter/",
-    "test": "flutter test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/p-mazhnik/rn-package-flutter.git",
-    "baseUrl": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn"
+    "baseUrl": "https://github.com/p-mazhnik/rn-package-flutter/rn-flutter"
   },
-  "homepage": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn",
+  "homepage": "https://github.com/p-mazhnik/rn-package-flutter/rn-flutter",
   "keywords": [
     "react-native"
   ],

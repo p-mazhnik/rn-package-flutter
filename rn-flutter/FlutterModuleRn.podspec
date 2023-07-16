@@ -1,6 +1,6 @@
 # FlutterModuleRn.podspec
 
-require './ios-rn/Podspecs/common'
+require './ios/Podspecs/common'
 
 Pod::Spec.new do |s|
   setCommonProps(s)
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   flutter_module_rn
                    DESC
-  s.source_files = "ios-rn/**/*.{h,c,cc,cpp,m,mm,swift}"
+  s.source_files = "ios/**/*.{h,c,cc,cpp,m,mm,swift}"
 
   s.dependency "React-Core"
   s.dependency "Flutter"

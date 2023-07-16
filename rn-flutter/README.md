@@ -27,7 +27,7 @@ repositories {
 Add following to your `Podfile`:
 
 ```ruby
-require_relative '../node_modules/flutter-module-rn/ios-rn/pods'
+require_relative '../node_modules/flutter-module-rn/ios/pods'
 ...
 
 target 'ReactNativeApp' do

@@ -1,0 +1,23 @@
+{
+  "name": "flutter-module",
+  "title": "Flutter module RN",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Flutter module as a React Native package",
+  "scripts": {
+    "android:build": "flutter build aar && ncp build/host ../rn-flutter/build/host",
+    "ios:build": "flutter build ios-framework --cocoapods --no-profile --output=../rn-flutter/build/ios/framework && yarn ios:zip",
+    "ios:zip": "cd ../rn-flutter/build/ios/framework && mv Release/Flutter.podspec . && zip -rm Debug.zip Debug && zip -rm Release.zip Release",
+    "web:build": "flutter build web --base-href /flutter/ --output=../rn-flutter/build/web",
+    "test": "flutter test"
+  },
+  "author": {
+    "name": "p-mazhnik",
+    "url": "https://github.com/p-mazhnik"
+  },
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "ncp": "^2.0.0",
+    "rimraf": "^3.0.2"
+  }
+}
