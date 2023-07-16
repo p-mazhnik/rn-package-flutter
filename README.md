@@ -24,7 +24,7 @@ module as a React Native package ([rn-package-flutter/article-1](https://github.
 Repository structure:
 - `ReactNativeApp` directory contains host app code written in React Native Web, TypeScript
 - `rn-flutter` directory contains package code written in React Native Web
-- `flutter_module_rn` directory contains Flutter module written in Dart
+- `flutter_module` directory contains Flutter module written in Dart
 
 ## Main Libraries Used 🛠
 Tested with Flutter **3.10** and React-Native **0.72**.
