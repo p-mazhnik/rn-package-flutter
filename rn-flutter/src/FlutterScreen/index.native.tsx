@@ -1,12 +1,13 @@
 import { ActivityIndicator, NativeEventEmitter, NativeModules, Platform, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
+import type { FlutterScreenProps } from './types'
 
 const { FlutterModuleRn } = NativeModules;
 const eventEmitter = new NativeEventEmitter(FlutterModuleRn);
 
-const FlutterScreen = ({ initialCounterValue, onCounterIncrement, onScreenClose }) => {
+const FlutterScreen: React.FC<FlutterScreenProps> = ({ initialCounterValue, onCounterIncrement, onScreenClose }) => {
   useEffect(() => {
-    FlutterModuleRn.startFlutterActivity('setCounterValue', initialCounterValue.toString(), (text) => {
+    FlutterModuleRn.startFlutterActivity('setCounterValue', initialCounterValue.toString(), (text: string) => {
       console.log(text);
     });
   }, [])

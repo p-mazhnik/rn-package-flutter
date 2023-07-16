@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
+import type { FlutterScreenProps } from './types'
 
-const FlutterScreen = () => {
+const FlutterScreen: React.FC<FlutterScreenProps> = () => {
   const iframeRef = useRef(null)
   return (
     <iframe
