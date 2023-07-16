@@ -1,7 +1,7 @@
 {
   "name": "flutter-module-rn",
   "title": "Flutter module RN",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "description": "Flutter module as a React Native package",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "README.md",
     "android",
     "index.js",
-    "ios-rn",
+    "ios",
     "FlutterModuleRn.podspec"
   ],
   "repository": {
