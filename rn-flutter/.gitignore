@@ -72,9 +72,8 @@ project.xcworkspace
 .gradle
 local.properties
 *.iml
-android-rn/gradle
-android-rn/gradlew*
-android/
+android/gradle
+android/gradlew*
 
 # BUCK
 buck-out/

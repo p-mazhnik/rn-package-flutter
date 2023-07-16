@@ -8,7 +8,7 @@
   "types": "index.d.ts",
   "files": [
     "README.md",
-    "android-rn",
+    "android",
     "index.js",
     "ios-rn",
     "FlutterModuleRn.podspec"
