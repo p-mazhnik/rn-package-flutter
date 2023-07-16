@@ -13,19 +13,12 @@
     "ios-rn",
     "FlutterModuleRn.podspec"
   ],
-  "scripts": {
-    "android:build": "flutter build aar",
-    "ios:build": "flutter build ios-framework --cocoapods --no-profile && yarn ios:zip",
-    "ios:zip": "cd ./build/ios/framework && mv Release/Flutter.podspec . && zip -rm Debug.zip Debug && zip -rm Release.zip Release",
-    "web:build": "flutter build web --base-href /flutter/",
-    "test": "flutter test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/p-mazhnik/rn-package-flutter.git",
-    "baseUrl": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn"
+    "baseUrl": "https://github.com/p-mazhnik/rn-package-flutter/rn-flutter"
   },
-  "homepage": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn",
+  "homepage": "https://github.com/p-mazhnik/rn-package-flutter/rn-flutter",
   "keywords": [
     "react-native"
   ],
