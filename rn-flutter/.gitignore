@@ -80,5 +80,3 @@ android/
 buck-out/
 \.buckd/
 *.keystore
-
-package-lock.json

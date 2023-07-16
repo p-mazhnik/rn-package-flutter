@@ -1,47 +1,23 @@
 {
-  "name": "flutter-module-rn",
+  "name": "flutter-module",
   "title": "Flutter module RN",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Flutter module as a React Native package",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "files": [
-    "README.md",
-    "android-rn",
-    "index.js",
-    "ios-rn",
-    "FlutterModuleRn.podspec"
-  ],
   "scripts": {
-    "android:build": "flutter build aar",
-    "ios:build": "flutter build ios-framework --cocoapods --no-profile && yarn ios:zip",
-    "ios:zip": "cd ./build/ios/framework && mv Release/Flutter.podspec . && zip -rm Debug.zip Debug && zip -rm Release.zip Release",
-    "web:build": "flutter build web --base-href /flutter/",
+    "android:build": "flutter build aar && ncp build/host ../rn-flutter/build/host",
+    "ios:build": "flutter build ios-framework --cocoapods --no-profile --output=../rn-flutter/build/ios/framework && yarn ios:zip",
+    "ios:zip": "cd ../rn-flutter/build/ios/framework && mv Release/Flutter.podspec . && zip -rm Debug.zip Debug && zip -rm Release.zip Release",
+    "web:build": "flutter build web --base-href /flutter/ --output=../rn-flutter/build/web",
     "test": "flutter test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/p-mazhnik/rn-package-flutter.git",
-    "baseUrl": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn"
-  },
-  "homepage": "https://github.com/p-mazhnik/rn-package-flutter/flutter_module_rn",
-  "keywords": [
-    "react-native"
-  ],
   "author": {
     "name": "p-mazhnik",
     "url": "https://github.com/p-mazhnik"
   },
   "readmeFilename": "README.md",
-  "peerDependencies": {
-    "react": ">=17.0.1",
-    "react-native": ">=0.65.0 <1.0.x"
-  },
   "devDependencies": {
     "ncp": "^2.0.0",
-    "@types/react": "^17",
-    "@types/react-native": "0.66.4",
     "rimraf": "^3.0.2"
   }
 }
