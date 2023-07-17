@@ -46,14 +46,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const platform = MethodChannel('pavel/flutter');
+  static const MethodChannel? _channel = null; // MethodChannel('pavel/flutter');
 
   int _counter = 0;
   bool _received = false;
 
   @override
   void initState() {
-    platform.setMethodCallHandler((call) async {
+    _channel?.setMethodCallHandler((call) async {
       if (call.method == 'setCounterValue') {
         setState(() {
           _received = true;
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
-    platform.invokeMethod('incrementCounter', {'data': '$_counter'});
+    _channel?.invokeMethod('incrementCounter', {'data': '$_counter'});
   }
 
   @override
@@ -92,9 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            platform.invokeMethod('closeFlutterScreen');
-            // todo: web support
-            SystemNavigator.pop();
+            _channel?.invokeMethod('closeFlutterScreen');
           },
         ),
       ),
