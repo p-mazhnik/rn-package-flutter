@@ -82,7 +82,7 @@ class RNFlutterViewManager(
     }
 
     companion object {
-        private const val REACT_CLASS = "RNFlutterViewManager"
+        private const val REACT_CLASS = "RNFlutterView"
         private const val COMMAND_CREATE = "create"
     }
 }

@@ -12,7 +12,7 @@ interface FlutterNativeViewProps {
   style?: StyleProp<ViewStyle>;
 }
 
-const FlutterNativeView = requireNativeComponent<FlutterNativeViewProps>(Platform.OS === 'android' ? 'RNFlutterViewManager' : 'RNFlutterView')
+const FlutterNativeView = requireNativeComponent<FlutterNativeViewProps>('RNFlutterView')
 
 const createFragment = (viewId: null | number) =>
   UIManager.dispatchViewManagerCommand(
