@@ -22,6 +22,21 @@ repositories {
 }
 ```
 
+Configure package in the `MainApplication` class:
+
+```java
+import com.reactlibrary.FlutterEngineHelper;
+
+public class MainApplication extends Application implements ReactApplication {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        FlutterEngineHelper.initEngineGroup(this);
+        // React Native code ...
+    }
+}
+```
+
 ### iOS
 
 Add following to your `Podfile`:
@@ -38,6 +53,34 @@ end
 ```
 
 Run `cd ios && pod install`
+
+Configure package in the `AppDelegate` class:
+
+```objc
+// AppDelegate.h
+
+#import <FlutterEngineProvider.h>
+
+@interface AppDelegate : RCTAppDelegate<FlutterEngineProvider>
+@end
+```
+```objc
+// AppDelegate.mm
+
+@implementation AppDelegate
+
+  @synthesize engines;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  // React Native code ...
+
+  self.engines = [[FlutterEngineGroup alloc] initWithName:@"io.flutter" project:nil];
+
+  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+// ...
+```
 
 ### Web
 This is uncompiled package and may cause webpack build errors. 

@@ -4,7 +4,7 @@ import {
   StyleProp,
   UIManager,
   StyleSheet,
-  ViewStyle
+  ViewStyle, Platform
 } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 
@@ -12,7 +12,7 @@ interface FlutterNativeViewProps {
   style?: StyleProp<ViewStyle>;
 }
 
-const FlutterNativeView = requireNativeComponent<FlutterNativeViewProps>('RNFlutterViewManager')
+const FlutterNativeView = requireNativeComponent<FlutterNativeViewProps>(Platform.OS === 'android' ? 'RNFlutterViewManager' : 'RNFlutterView')
 
 const createFragment = (viewId: null | number) =>
   UIManager.dispatchViewManagerCommand(
@@ -25,8 +25,10 @@ export const FlutterView: React.FC = () => {
   const ref = useRef(null)
 
   useEffect(() => {
-    const viewId = findNodeHandle(ref.current)
-    createFragment(viewId)
+    if (Platform.OS === 'android') {
+      const viewId = findNodeHandle(ref.current)
+      createFragment(viewId)
+    }
   }, [])
 
   return (
