@@ -43,7 +43,11 @@ function HomeScreen() {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Button title={'React Native button'} onPress={() => {}} />
+        <Button
+          color="orange"
+          title={'React Native button'}
+          onPress={() => {}}
+        />
         <View style={styles.componentInScroll}>
           <FlutterView
             webConfig={{
@@ -53,7 +57,11 @@ function HomeScreen() {
             }}
           />
         </View>
-        <Button title={'React Native button'} onPress={() => {}} />
+        <Button
+          color="orange"
+          title={'React Native button'}
+          onPress={() => {}}
+        />
         <View style={styles.componentInScroll}>
           <FlutterView
             webConfig={{
