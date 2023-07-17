@@ -6,12 +6,14 @@ def DEFAULT_COMPILE_SDK_VERSION = 30
 def DEFAULT_BUILD_TOOLS_VERSION = '30.0.2'
 def DEFAULT_MIN_SDK_VERSION = 21
 def DEFAULT_TARGET_SDK_VERSION = 30
+def DEFAULT_KOTLIN_VERSION = '1.7.0'
 
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 buildscript {
     // The Android Gradle plugin is only required when opening the android folder stand-alone.
@@ -19,6 +21,8 @@ buildscript {
     // module dependency in an application project.
     // ref: https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:build_script_external_dependencies
     if (project == rootProject) {
+        def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : '1.7.0'
+
         repositories {
             google()
             mavenCentral()
@@ -27,6 +31,7 @@ buildscript {
             // This should reflect the Gradle plugin version used by
             // the minimum React Native version supported.
             classpath 'com.android.tools.build:gradle:4.2.2'
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         }
     }
 }
@@ -75,9 +80,12 @@ repositories {
 }
 
 dependencies {
+    def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : DEFAULT_KOTLIN_VERSION
+
     debugImplementation 'com.example.flutter_module_rn:flutter_debug:1.0'
     profileImplementation 'com.example.flutter_module_rn:flutter_profile:1.0'
     releaseImplementation 'com.example.flutter_module_rn:flutter_release:1.0'
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
