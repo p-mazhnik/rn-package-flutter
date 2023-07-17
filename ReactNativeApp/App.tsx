@@ -48,6 +48,9 @@ function HomeScreen() {
           <FlutterView />
         </View>
         <Button title={'React Native button'} onPress={() => {}} />
+        <View style={styles.componentInScroll}>
+          <FlutterView />
+        </View>
         {/*<View>
           <Text>Enter initial counter value</Text>
           <TextInput
