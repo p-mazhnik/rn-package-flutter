@@ -1,4 +1,8 @@
-# flutter-module-rn
+# rn-flutter
+
+Embeds an instance of Flutter as a prebuilt npm package that can be loaded into an existing React Native Web app.
+
+Below you can find instructions on how to use this package in your React Native app.
 
 ## Getting started
 
@@ -133,9 +137,9 @@ module.exports = {
 
 ## Usage
 ```javascript
-import { FlutterScreen } from 'flutter-module-rn';
+import { FlutterView } from 'flutter-module-rn';
 
-<Stack.Screen name="Flutter" component={FlutterScreen} />
+<FlutterView />
 ```
 
 ## Development
