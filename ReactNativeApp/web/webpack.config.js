@@ -6,6 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const appDirectory = path.resolve(__dirname, '../');
 const { presets } = require(`${appDirectory}/babel.config.js`);
@@ -106,6 +107,14 @@ module.exports = {
           to: 'flutter',
         },
       ],
+    }),
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve(
+        appDirectory,
+        'node_modules/flutter-module-rn/build/web/flutter.js',
+      ),
+      outputPath: 'flutter',
+      publicPath: 'flutter',
     }),
   ],
 };

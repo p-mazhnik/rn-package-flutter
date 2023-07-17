@@ -7,6 +7,7 @@ import {
   ViewStyle, Platform
 } from 'react-native'
 import React, { useEffect, useRef } from 'react'
+import type { FlutterViewProps } from './types'
 
 interface FlutterNativeViewProps {
   style?: StyleProp<ViewStyle>;
@@ -21,7 +22,7 @@ const createFragment = (viewId: null | number) =>
     [viewId],
   )
 
-export const FlutterView: React.FC = () => {
+export const FlutterView: React.FC<FlutterViewProps> = () => {
   const ref = useRef(null)
 
   useEffect(() => {

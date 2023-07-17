@@ -1,18 +1,15 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import type { FlutterViewProps, WebConfig } from './types'
+import { FlutterViewCustomElement } from './webCustom'
+import { FlutterViewIframe } from './webIframe'
 
-export const FlutterView: React.FC = () => {
-  const iframeRef = useRef(null)
-  return (
-    <iframe
-      src="/flutter"
-      ref={iframeRef}
-      style={{
-        height: '100vh',
-        width: '100vw',
-        border: 0,
-      }}
-      sandbox='allow-scripts allow-same-origin'
-      referrerPolicy='no-referrer'
-    />
-  )
+const defaultWebConfig: WebConfig = {
+  useIframe: true,
+}
+
+export const FlutterView: React.FC<FlutterViewProps> = ({webConfig = defaultWebConfig}) => {
+  if (webConfig.useIframe ?? defaultWebConfig.useIframe) {
+    return <FlutterViewIframe {...webConfig} />;
+  }
+  return <FlutterViewCustomElement {...webConfig} />;
 }

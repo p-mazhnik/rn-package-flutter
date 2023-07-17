@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Button,
   SafeAreaView,
@@ -45,11 +45,23 @@ function HomeScreen() {
         style={backgroundStyle}>
         <Button title={'React Native button'} onPress={() => {}} />
         <View style={styles.componentInScroll}>
-          <FlutterView />
+          <FlutterView
+            webConfig={{
+              useIframe: false,
+              assetBase: '/flutter/',
+              src: 'flutter/main.dart.js',
+            }}
+          />
         </View>
         <Button title={'React Native button'} onPress={() => {}} />
         <View style={styles.componentInScroll}>
-          <FlutterView />
+          <FlutterView
+            webConfig={{
+              useIframe: true,
+              assetBase: '/flutter/',
+              src: 'flutter/main.dart.js',
+            }}
+          />
         </View>
         {/*<View>
           <Text>Enter initial counter value</Text>
