@@ -8,8 +8,8 @@ export const FlutterViewIframe: React.FC<WebConfig> = ({assetBase = ''}) => {
       src={assetBase}
       ref={iframeRef}
       style={{
-        height: '100vh',
-        width: '100vw',
+        height: '100%',
+        width: '100%',
         border: 0,
       }}
       sandbox='allow-scripts allow-same-origin'

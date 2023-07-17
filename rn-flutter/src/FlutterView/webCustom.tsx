@@ -1,10 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, memo } from 'react'
 import type { WebConfig } from './types'
 
 // The global _flutter namespace
 declare var _flutter: any
 
-export const FlutterViewCustomElement: React.FC<WebConfig> = ({ assetBase = '', src = 'main.dart.js', }) => {
+// global promise is needed to avoid race conditions
+// when component is mounted and immediately unmounted,
+// e.g. in a React strict mode
+let engineInitializerPromise: Promise<any> | null = null
+
+export const FlutterViewCustomElement: React.FC<WebConfig> = memo(({ assetBase = '', src = 'main.dart.js', }) => {
   const ref = useRef(null)
   const [isMultiView, setIsMultiView] = useState(false)
 
@@ -14,24 +19,45 @@ export const FlutterViewCustomElement: React.FC<WebConfig> = ({ assetBase = '', 
       setIsMultiView(true)
       return
     }
-    _flutter.loader.loadEntrypoint({
-      entrypointUrl: src,
-      onEntrypointLoaded: async (engineInitializer: any) => {
-        let appRunner = await engineInitializer.initializeEngine({
-          hostElement: ref.current,
-          assetBase: assetBase,
+    let isRendered = true;
+    const initFlutterApp = async () => {
+      if (!engineInitializerPromise) {
+        console.log('create Flutter engine initializer promise...')
+        engineInitializerPromise = new Promise<any>((resolve) => {
+          console.log('setup Flutter engine initializer...')
+          _flutter.loader.loadEntrypoint({
+            entrypointUrl: src,
+            onEntrypointLoaded: async (engineInitializer: any) => {
+              resolve(engineInitializer)
+            }
+          })
         })
-        await appRunner.runApp()
       }
-    })
+      const engineInitializer = await engineInitializerPromise;
+      if (!isRendered) return;
+
+      console.log('initialize Flutter engine...')
+      const appRunner = await engineInitializer?.initializeEngine({
+        hostElement: ref.current,
+        assetBase: assetBase,
+      })
+      if (!isRendered) return;
+
+      console.log('run Flutter engine...')
+      await appRunner?.runApp()
+    }
+    initFlutterApp();
+    return () => {
+      isRendered = false;
+    }
   }, [])
   return (
     <div
       ref={ref}
       className="flutter"
       style={{
-        height: '100vh',
-        width: '100vw',
+        height: '100%',
+        width: '100%',
       }}
     >
       {isMultiView &&
@@ -43,4 +69,4 @@ export const FlutterViewCustomElement: React.FC<WebConfig> = ({ assetBase = '', 
       }
     </div>
   )
-}
+});
