@@ -1,16 +1,15 @@
 import React, { useRef } from 'react'
-import type { FlutterScreenProps } from './types'
+import type { WebConfig } from './types'
 
-const FlutterScreen: React.FC<FlutterScreenProps> = () => {
+export const FlutterViewIframe: React.FC<WebConfig> = ({assetBase = ''}) => {
   const iframeRef = useRef(null)
   return (
     <iframe
-      src="/flutter"
+      src={assetBase}
       ref={iframeRef}
       style={{
         height: '100vh',
         width: '100vw',
-        top: 0,
         border: 0,
       }}
       sandbox='allow-scripts allow-same-origin'
@@ -18,5 +17,3 @@ const FlutterScreen: React.FC<FlutterScreenProps> = () => {
     />
   )
 }
-
-export default FlutterScreen

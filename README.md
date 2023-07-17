@@ -14,17 +14,47 @@ https://img.shields.io/badge/p--mazhnik-%230077B5.svg?style=for-the-badge&logo=l
 https://www.linkedin.com/in/p-mazhnik/
 )
 
-Source code of the article about including Flutter
-module as a React Native package ([rn-package-flutter/article-1](https://github.com/p-mazhnik/rn-package-flutter/tree/article-1) branch).
+It’s sometimes not practical to rewrite your entire application in Flutter all at once.
+In such case, Flutter can be seamlessly integrated into your existing application as a library or module.
+While there are numerous resources discussing the utilization of React Native's code in Flutter, 
+there appears to be a dearth of information on the inverse scenario, 
+that is, incorporating Flutter code into a React Native application.  
+In this article series, I'll delve into the process of integrating a Flutter module as a React Native npm package.
 
-- [Medium](https://medium.com/@p.mazhnik/how-to-include-flutter-module-as-a-react-native-package-b115846de1ca)
-- [Dev.to](https://dev.to/mazhnik/how-to-include-flutter-module-as-a-react-native-package-5b00)
-- [GitHub](./article.md)
+Topics covered in the article series:
 
-Repository structure:
-- `ReactNativeApp` directory contains host app code written in React Native Web, TypeScript
-- `rn-flutter` directory contains package code written in React Native Web
-- `flutter_module` directory contains Flutter module written in Dart
+Article 1: **How to include Flutter module as a React Native package**
+
+Source code: [rn-package-flutter/article-1](https://github.com/p-mazhnik/rn-package-flutter/tree/article-1) branch.  
+Article: [Medium](https://medium.com/@p.mazhnik/how-to-include-flutter-module-as-a-react-native-package-b115846de1ca), 
+[Dev.to](https://dev.to/mazhnik/how-to-include-flutter-module-as-a-react-native-package-5b00),
+[GitHub](./article-1.md)
+
+- Step-by-step guide for setting up a Flutter module as an npm package in a React Native app.
+- Launching Flutter screen from the React Native app on Android and iOS platforms.
+
+Article 2: **Render Flutter module alongside React Native components**
+
+- Rendering Flutter module alongside React Native components for a seamless integration on Web, iOS, and Android platforms.
+
+Article 3: TBD
+
+- Establishing communication between Flutter and React Native.
+
+## Repository structure
+### ReactNativeApp
+Quite standard React Native Web app. The following changes were made to be able to use with a Flutter module:
+- web: `web/webpack.config` was modified to inject `flutter.js` script into `index.html` file.
+- web: The rest of the flutter app `rn-flutter/build/web/` is moved to `/flutter`.
+- android: maven repositories were added to the `android/build.gradle` file.
+- android: `FlutterEngineGroup` is initialized in `MainApplication` to be able to use multiple Flutter modules.
+- ios: Flutter frameworks were added using CocoaPods in `ios/Podfile` file.
+- ios: `FlutterEngineGroup` is initialized in `AppDelegate` to be able to use multiple Flutter modules.
+### rn-flutter
+npm package that takes care of embedding Flutter on Android, iOS and web. 
+Used as a dependency in `ReactNativeApp`.
+### flutter_module
+Flutter module written in Dart.
 
 ## Main Libraries Used 🛠
 Tested with Flutter **3.10** and React-Native **0.72**.
@@ -32,7 +62,57 @@ Tested with Flutter **3.10** and React-Native **0.72**.
 - [React Native](https://reactnative.dev/)
 - [React Native Web](https://necolas.github.io/react-native-web/)
 - [CocoaPods](https://cocoapods.org/about)
-- [create-react-native-module](https://github.com/brodybits/create-react-native-module)
+- [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+
+## How to run the app
+
+In order to run this app, first prepare `rn-flutter` npm dependency:
+```bash
+cd rn-flutter
+
+yarn install
+# for android, prepares Flutter Android artifacts
+yarn android:build
+# for ios, prepares Flutter iOS artifacts
+yarn ios:build
+# for web, prepares Flutter Web artifacts
+yarn web:build
+# general js code
+yarn rn:build
+
+cd ..
+```
+
+Then install app's `npm` and cocoapods dependencies
+```bash
+cd ReactNativeApp
+
+yarn install
+# run this if rn-flutter was updated
+yarn upgrade-flutter
+# run this to install ios dependencies 
+yarn install:ios
+```
+
+Once you've reached this point, you should be able to run app on all three platforms:
+
+```bash
+yarn android
+yarn ios
+yarn web
+```
+
+## Troubleshooting
+
+### Flutter
+Ensure your flutter app is properly rebuilt after any changes.  
+Run `yarn <platform>:build` script from the `rn-flutter` directory 
+for each platform you're testing.
+
+### React Native npm package
+Ensure your npm package is properly rebuilt and reinstalled after any changes.  
+Run `yarn upgrade-flutter` from the `ReactNativeApp` directory 
+and `yarn install:ios` if iOS files were changed.
 
 ## Found Libraries Limitations 🐞
 - [ ] React Native: need to duplicate in host app custom 3rd party maven 
@@ -43,6 +123,8 @@ https://github.com/CocoaPods/CocoaPods/issues/2847,
 https://github.com/CocoaPods/CocoaPods/issues/6338
 - [ ] CocoaPods: can't define local directory in the podspec `source` property  
 https://github.com/CocoaPods/cocoapods-packager/issues/216
+- [ ] Flutter: can't display Flutter in multiple elements on web
+https://github.com/flutter/flutter/issues/118481
 
 ## Learn More 📖
 [Add Flutter to existing app](https://flutter.dev/docs/development/add-to-app)

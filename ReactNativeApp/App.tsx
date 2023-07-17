@@ -8,45 +8,31 @@
  * @format
  */
 
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import {
   Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  TextInput,
   View,
+  StyleSheet,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import {
-  createNativeStackNavigator,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
-import { FlutterScreen } from 'flutter-module-rn';
+import { FlutterView } from 'flutter-module-rn';
 
 // import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 const Colors = {
-  white: '#fff',
-  black: '#000',
-  light: '#ddd',
-  dark: '#333',
   lighter: '#eee',
-  darker: '#111',
 };
 
-const Stack = createNativeStackNavigator();
+const styles = StyleSheet.create({
+  componentInScroll: {
+    height: 200,
+    backgroundColor: 'white',
+  },
+});
 
-type RootStackParamList = {
-  Home: { counter: number };
-  Flutter: { initialCounterValue: number };
-};
-
-function HomeScreen({
-  navigation,
-  route,
-}: NativeStackScreenProps<RootStackParamList, 'Home'>) {
-  const [initialCounterValue, setCounter] = useState<number>(0);
+function HomeScreen() {
+  // const [initialCounterValue, setCounter] = useState<number>(0);
   const backgroundStyle = {
     backgroundColor: Colors.lighter,
     flex: 1,
@@ -58,16 +44,34 @@ function HomeScreen({
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Button
-          title={'Start Flutter Screen'}
-          onPress={() =>
-            navigation.navigate({
-              name: 'Flutter',
-              params: { initialCounterValue },
-              merge: true,
-            })
-          }
+          color="orange"
+          title={'React Native button'}
+          onPress={() => {}}
         />
-        <View>
+        <View style={styles.componentInScroll}>
+          <FlutterView
+            webConfig={{
+              useIframe: false,
+              assetBase: '/flutter/',
+              src: 'flutter/main.dart.js',
+            }}
+          />
+        </View>
+        <Button
+          color="orange"
+          title={'React Native button'}
+          onPress={() => {}}
+        />
+        <View style={styles.componentInScroll}>
+          <FlutterView
+            webConfig={{
+              useIframe: true,
+              assetBase: '/flutter/',
+              src: 'flutter/main.dart.js',
+            }}
+          />
+        </View>
+        {/*<View>
           <Text>Enter initial counter value</Text>
           <TextInput
             keyboardType="numeric"
@@ -81,51 +85,14 @@ function HomeScreen({
             You have pushed the button on the Flutter screen this many times:
           </Text>
           <Text style={{ textAlign: 'center' }}>{route.params.counter}</Text>
-        </View>
+        </View>*/}
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-function FlutterScreenWrapper({
-  navigation,
-  route,
-}: NativeStackScreenProps<RootStackParamList, 'Flutter'>) {
-  const [counter, setCounter] = useState<number>(0);
-  const onCounterIncrement = (value: number) => {
-    console.log(`onCounterIncrement: ${value}`);
-    setCounter(value);
-  };
-  const onScreenClose = useCallback(() => {
-    console.log(`onScreenClose: ${counter}`);
-    navigation.navigate({ name: 'Home', params: { counter }, merge: true });
-  }, [counter, navigation]);
-  return (
-    <FlutterScreen
-      initialCounterValue={route.params.initialCounterValue}
-      onCounterIncrement={onCounterIncrement}
-      onScreenClose={onScreenClose}
-    />
-  );
-}
-
 const App: React.FC = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          initialParams={{ counter: 0 }}
-        />
-        <Stack.Screen
-          name="Flutter"
-          component={FlutterScreenWrapper}
-          initialParams={{ initialCounterValue: 0 }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  return <HomeScreen />;
 };
 
 export default App;
