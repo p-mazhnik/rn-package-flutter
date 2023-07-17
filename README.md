@@ -53,9 +53,13 @@ Quite standard React Native Web app. The following changes were made to be able 
 - android: `FlutterEngineGroup` is initialized in `MainApplication` to be able to use multiple Flutter modules.
 - ios: Flutter frameworks were added using CocoaPods in `ios/Podfile` file.
 - ios: `FlutterEngineGroup` is initialized in `AppDelegate` to be able to use multiple Flutter modules.
+### cra-app
+Standard React app bootstrapped with Create React App. The following changes were made to be able to use with a Flutter module:
+- `package.json` has a custom `prebuild` script that copies the Flutter web artifacts from the npm package, so React can find it later.
+- `flutter.js` is added using "script" tag in `public/index.html`
 ### rn-flutter
 npm package that takes care of embedding Flutter on Android, iOS and web. 
-Used as a dependency in `ReactNativeApp`.
+Used as a dependency in `ReactNativeApp` and `cra-app`.
 ### flutter_module
 Flutter module written in Dart.
 
