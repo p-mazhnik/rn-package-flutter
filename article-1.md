@@ -4,12 +4,29 @@ description: Integrate Flutter module to React Native app as a npm package
 published: true
 date: 2021-09-27 19:31:37 UTC
 tags: flutter,reactnative,ios,android
+series: "How to include Flutter module as a React Native package"
 cover_image: https://cdn-images-1.medium.com/max/1024/1*DbzQqC3z1ZAU1eyAggv7Sg.png
 ---
 
 ![](https://cdn-images-1.medium.com/max/1024/1*DbzQqC3z1ZAU1eyAggv7Sg.png)
 
-It's sometimes not practical to rewrite your entire application in Flutter all at once. For those situations, Flutter can be integrated into your existing application as a library or module. I've seen a lot of articles titled "Using React Native's Plugins in Flutter", but no one for the reversed case, where we need to use our Flutter's modules in React Native app. So I decided to write this article about including Flutter module as a React Native npm package.
+It’s sometimes not practical to rewrite your entire application in Flutter all at once. In such case, Flutter can be seamlessly integrated into your existing application as a library or module. While there are numerous resources discussing the utilization of React Native's code in Flutter, there appears to be a dearth of information on the inverse scenario, that is, incorporating Flutter code into a React Native application. In this article series, I'll delve into the process of integrating a Flutter module as a React Native npm package.
+
+Topics covered in the article series:
+
+Article 1: **How to include Flutter module as a React Native package** (current)
+
+- Step-by-step guide for setting up a Flutter module as an npm package in a React Native app.
+- Launching Flutter screen from the React Native app on Android and iOS platforms.
+
+[Article 2: **Render Flutter module alongside React Native components**](https://dev.to/mazhnik/render-flutter-module-alongside-react-native-components-gk9)
+
+- Rendering Flutter module alongside React Native components for a seamless integration on Web, iOS, and Android platforms.
+
+Article 3: TBD
+
+- Establishing communication between Flutter and React Native.
+
 
 Even if this article positioned as a guide for React Native developers, here also presented the best way (in my opinion) to use Flutter app as an iOS CocoaPods dependency.
 
@@ -60,9 +77,6 @@ Let's make following modifications in `flutter_module_rn` directory:
 module.exports = {
   dependency: {
     platforms: {
-      ios: {
-        project: './ios-rn/FlutterModuleRn.xcworkspace',
-      },
       android: {
         sourceDir: './android-rn/',
       },
@@ -432,18 +446,17 @@ end
 
 Looks quite simple, what do you think? Our package's users don't need to install Flutter SDK, changes in our package do not require changes on their part. All complex integration processes are done implicitly using auto-linking features from both React Native and CocoaPods. Of course, due to several limitations, we cannot fully automate adding a package. Hopefully these issues will be resolved in the future.
 
-**Like it if you find this article helpful**. It will help me write a solution for React Native Web as well.
+**Like it if you find this article helpful**. Please consider giving the GitHub repository a star ⭐️
 
 **Full source code for this article can be found [on GitHub](https://github.com/p-mazhnik/rn-package-flutter).**
 
-I appreciate feedback so please leave any suggestions or recommendations below.   
-And if you face any troubles — let me know, I'll do my best to help you 🙂
+Your feedback and engagement mean a lot to me, so please share any suggestions or recommendations in the comments or, even better, as a GitHub issue. If you encounter any difficulties, please don't hesitate to reach out 🙂
 
 **Thank you for reading!**
 
 <hr />
 
-This article was inspired by the work we do at **101 Edu**.   
-101 Edu builds mobile-first teaching and assessment tools for college STEM courses. If you want to build cool stuff with us, check out some of our [job openings](https://angel.co/company/101/jobs)!
+This article was inspired by the work we do at **Aktiv Learning** (acquired by TopHat).   
+Aktiv Learning builds mobile-first teaching and assessment tools for college STEM courses. If you want to build cool stuff with us, check out some of our [job openings](https://tophat.com/company/work-with-us/)!
 
-[Chem101 - Transform Your Chemistry Students with Active Learning](https://101edu.co/)
+[Aktiv Learning - aktivate Student Engagement in STEM](https://aktiv.com/)

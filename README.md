@@ -35,6 +35,9 @@ Article: [Medium](https://medium.com/@p.mazhnik/how-to-include-flutter-module-as
 
 Article 2: **Render Flutter module alongside React Native components**
 
+Source code: [rn-package-flutter/article-2](https://github.com/p-mazhnik/rn-package-flutter/tree/article-2) branch.  
+Article: [Dev.to](https://dev.to/mazhnik/render-flutter-module-alongside-react-native-components-gk9)
+
 - Rendering Flutter module alongside React Native components for a seamless integration on Web, iOS, and Android platforms.
 
 Article 3: TBD
