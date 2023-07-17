@@ -23,7 +23,7 @@ function App() {
       <div className="FlutterViewContainer">
         <FlutterView
           webConfig={{
-            useIframe: false,
+            useIframe: true,
             assetBase: process.env.PUBLIC_URL + '/flutter/',
             src: process.env.PUBLIC_URL + '/flutter/main.dart.js',
           }}
