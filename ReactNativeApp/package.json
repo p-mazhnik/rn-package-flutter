@@ -15,7 +15,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "upgrade-flutter": "cd ../rn-flutter && yarn rn:build && cd ../ReactNativeApp && yarn upgrade flutter-module-rn"
+    "upgrade-flutter": "cd ../rn-flutter && yarn rn:build && cd - && yarn upgrade flutter-module-rn"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.7",

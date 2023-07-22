@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "yarn copy-flutter-assets && react-scripts test",
     "copy-flutter-assets": "rimraf public/flutter && ncp ../rn-flutter/build/web public/flutter",
-    "upgrade-flutter": "cd ../rn-flutter && yarn rn:build && cd ../cra-app && yarn upgrade flutter-module-rn"
+    "upgrade-flutter": "cd ../rn-flutter && yarn rn:build && cd - && yarn upgrade flutter-module-rn"
   },
   "eslintConfig": {
     "extends": [
