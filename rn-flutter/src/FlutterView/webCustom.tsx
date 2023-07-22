@@ -17,10 +17,28 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
     assetBase = defaultWebConfig.assetBase!,
     src = defaultWebConfig.src!,
   } = defaultWebConfig,
-  appLoaded,
+  onClicksChange,
+  onScreenChange,
+  onTextChange,
+  text,
+  screen,
+  clicks,
 }) => {
+  const flutterState = useRef<any>(null)
   const ref = useRef<HTMLDivElement>(null)
   const [isMultiView, setIsMultiView] = useState(false)
+
+  const onFlutterAppLoaded = (state: any) => {
+    flutterState.current = state
+    // listen to state changes
+    state.onClicksChanged(onClicksChange)
+    state.onTextChanged(onTextChange)
+    state.onScreenChanged(onScreenChange)
+    // set initial values
+    state.setText(text)
+    state.setScreen(screen)
+    state.setClicks(clicks)
+  }
 
   useEffect(() => {
     if (document.querySelectorAll('.flutter').length > 1) {
@@ -28,6 +46,7 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
       setIsMultiView(true)
       return
     }
+    const target = ref.current
     let isRendered = true
     const initFlutterApp = async () => {
       if (!isRendered) return;
@@ -42,7 +61,7 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
 
       console.log('initialize Flutter engine...')
       const appRunner = await engineInitializer?.initializeEngine({
-        hostElement: ref.current,
+        hostElement: target,
         assetBase: assetBase,
       })
       if (!isRendered) return
@@ -54,18 +73,29 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
 
     const eventListener = (event: Event) => {
       let state = (event as CustomEvent).detail
-      appLoaded?.(state)
+      onFlutterAppLoaded(state)
     }
 
-    ref.current?.addEventListener('flutter-initialized', eventListener, {
+    target?.addEventListener('flutter-initialized', eventListener, {
       once: true,
     })
 
     return () => {
       isRendered = false
-      ref.current?.removeEventListener('flutter-initialized', eventListener)
+      target?.removeEventListener('flutter-initialized', eventListener)
     }
   }, [])
+
+  useEffect(() => {
+    flutterState.current?.setText(text)
+  }, [text]);
+  useEffect(() => {
+    flutterState.current?.setScreen(screen)
+  }, [screen]);
+  useEffect(() => {
+    flutterState.current?.setClicks(clicks)
+  }, [clicks]);
+
   return (
     <div
       ref={ref}

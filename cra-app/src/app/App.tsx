@@ -1,26 +1,24 @@
-import React, { useRef } from 'react'
-import { styled, useTheme } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import FlutterDashIcon from '@mui/icons-material/FlutterDash';
+import React from 'react'
+import { styled, useTheme } from '@mui/material/styles'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import FlutterDashIcon from '@mui/icons-material/FlutterDash'
+import Drawer from '@mui/material/Drawer'
+import CssBaseline from '@mui/material/CssBaseline'
+import List from '@mui/material/List'
+import FormControl from '@mui/material/FormControl'
+import MenuItem from '@mui/material/MenuItem'
+import InputLabel from '@mui/material/InputLabel'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import TextField from '@mui/material/TextField'
 import { FlutterView } from 'flutter-module-rn'
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
-const drawerWidth = 300;
+const drawerWidth = 300
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
@@ -41,7 +39,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
     }),
     marginLeft: 0,
   }),
-}));
+}))
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -50,7 +48,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
-}));
+}))
 
 const FlutterAppWrapper = styled('div')(({ theme }) => ({
   border: '1px solid #eee',
@@ -62,12 +60,12 @@ const FlutterAppWrapper = styled('div')(({ theme }) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflow: 'hidden',
-}));
+}))
 
 const EffectButton = ({ title, toggleClassName }: { title: string, toggleClassName: (name: string) => void }) => {
   const onClick = () => {
     toggleClassName(`fx-${title.toLowerCase()}`)
-  };
+  }
   return (
     <Button
       variant="outlined"
@@ -79,47 +77,40 @@ const EffectButton = ({ title, toggleClassName }: { title: string, toggleClassNa
   )
 }
 
-function App() {
-  const theme = useTheme();
-  const [drawerOpened, setDrawerOpened] = React.useState(false);
-  const [classNames, setClassNames] = React.useState('');
-  const [screen, setScreen] = React.useState('counter');
-  const [clicks, setClicks] = React.useState(0);
-  const [text, setText] = React.useState('');
-  const flutterState = useRef<any>(null);
+function App () {
+  const theme = useTheme()
+  const [drawerOpened, setDrawerOpened] = React.useState(false)
+  const [classNames, setClassNames] = React.useState('')
+  const [screen, setScreen] = React.useState('counter')
+  const [clicks, setClicks] = React.useState(0)
+  const [text, setText] = React.useState('')
   const handleDrawer = () => {
-    setDrawerOpened(!drawerOpened);
-  };
-  const onFlutterAppLoaded = (state: any) => {
-    flutterState.current = state;
-    state.onClicksChanged(() => { setClicks(flutterState.current?.getClicks()) });
-    state.onTextChanged(() => { setText(flutterState.current?.getText()) });
-    state.onScreenChanged(() => { setScreen(flutterState.current?.getScreen()) });
+    setDrawerOpened(!drawerOpened)
   }
   const toggleClassName = (className: string) => {
-    const classNamesArray = classNames.trim().split(/\s+/);
-    const index = classNamesArray.indexOf(className);
+    const classNamesArray = classNames.trim().split(/\s+/)
+    const index = classNamesArray.indexOf(className)
     if (index === -1) {
-      classNamesArray.push(className);
+      classNamesArray.push(className)
     } else {
-      classNamesArray.splice(index, 1);
+      classNamesArray.splice(index, 1)
     }
-    setClassNames(classNamesArray.join(' '));
+    setClassNames(classNamesArray.join(' '))
   }
   const handleScreenChange = (event: SelectChangeEvent) => {
-    flutterState.current?.setScreen(event.target.value as string)
-  };
+    setScreen(event.target.value as string)
+  }
   const handleClicksChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const clicks = parseInt(event.target.value, 10) || 0
-    flutterState.current?.setClicks(clicks)
+    setClicks(clicks)
   }
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const text = event.target.value || ''
-    flutterState.current?.setText(text)
+    setText(text)
   }
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
-      <CssBaseline />
+      <CssBaseline/>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
           <IconButton
@@ -130,12 +121,12 @@ function App() {
             onClick={handleDrawer}
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             React 🤝 Flutter
           </Typography>
-          <FlutterDashIcon />
+          <FlutterDashIcon/>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -148,16 +139,16 @@ function App() {
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
-        <DrawerHeader />
+        <DrawerHeader/>
         <Box sx={{ overflow: 'auto', padding: theme.spacing(1), }}>
           <List>
             <Box>
               <Typography variant="h5" component="h2">Effects</Typography>
               <Box sx={{ display: 'flex', flexGrow: 1, flexWrap: 'wrap', gap: '5px' }}>
-                <EffectButton toggleClassName={toggleClassName} title="Shadow" />
-                <EffectButton toggleClassName={toggleClassName} title="Mirror" />
-                <EffectButton toggleClassName={toggleClassName} title="Resize" />
-                <EffectButton toggleClassName={toggleClassName} title="Spin" />
+                <EffectButton toggleClassName={toggleClassName} title="Shadow"/>
+                <EffectButton toggleClassName={toggleClassName} title="Mirror"/>
+                <EffectButton toggleClassName={toggleClassName} title="Resize"/>
+                <EffectButton toggleClassName={toggleClassName} title="Spin"/>
               </Box>
             </Box>
             <Box mt={2}>
@@ -211,12 +202,17 @@ function App() {
               assetBase: process.env.PUBLIC_URL + '/flutter/',
               src: process.env.PUBLIC_URL + '/flutter/main.dart.js',
             }}
-            appLoaded={onFlutterAppLoaded}
+            onClicksChange={setClicks}
+            onScreenChange={setScreen}
+            onTextChange={setText}
+            text={text}
+            clicks={clicks}
+            screen={screen}
           />
         </FlutterAppWrapper>
       </Main>
     </Box>
-  );
+  )
 }
 
-export default App;
+export default App

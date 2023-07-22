@@ -6,15 +6,33 @@ export const FlutterViewIframe: React.FC<FlutterViewProps> = ({
   webConfig: {
     assetBase = defaultWebConfig.assetBase!,
   } = defaultWebConfig,
-  appLoaded,
+  onClicksChange,
+  onScreenChange,
+  onTextChange,
+  text,
+  screen,
+  clicks,
 }) => {
+  const flutterState = useRef<any>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
+  const onFlutterAppLoaded = (state: any) => {
+    flutterState.current = state
+    // listen to state changes
+    state.onClicksChanged(onClicksChange)
+    state.onTextChanged(onTextChange)
+    state.onScreenChanged(onScreenChange)
+    // set initial values
+    state.setText(text)
+    state.setScreen(screen)
+    state.setClicks(clicks)
+  }
+
   useEffect(() => {
     const iframe = iframeRef.current
     const iframeWindow = iframe?.contentWindow ?? iframe?.contentDocument?.defaultView
     const eventListener = (event: Event) => {
       let state = (event as CustomEvent).detail
-      appLoaded?.(state)
+      onFlutterAppLoaded(state)
     }
     iframeWindow?.addEventListener('flutter-initialized', eventListener, {
       once: true,
@@ -23,6 +41,17 @@ export const FlutterViewIframe: React.FC<FlutterViewProps> = ({
       iframeWindow?.removeEventListener('flutter-initialized', eventListener)
     }
   }, []);
+
+  useEffect(() => {
+    flutterState.current?.setText(text)
+  }, [text]);
+  useEffect(() => {
+    flutterState.current?.setScreen(screen)
+  }, [screen]);
+  useEffect(() => {
+    flutterState.current?.setClicks(clicks)
+  }, [clicks]);
+
   return (
     <iframe
       src={assetBase}
