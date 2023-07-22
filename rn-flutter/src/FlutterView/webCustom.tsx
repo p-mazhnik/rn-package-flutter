@@ -1,3 +1,5 @@
+// based on https://github.com/p-mazhnik/flutter-embedding/blob/87b188c61ffe642c0551ffd4e2a25a4988573b99/cra-flutter/src/App/FlutterView/FlutterView.tsx
+
 import React, { useEffect, useRef, useState, memo } from 'react'
 import type { FlutterViewProps } from './types'
 import { defaultWebConfig } from './types'
@@ -5,10 +7,10 @@ import { defaultWebConfig } from './types'
 // The global _flutter namespace
 declare var _flutter: any
 
-// global promise is needed to avoid race conditions
-// when component is mounted and immediately unmounted,
-// e.g. in a React strict mode
-let engineInitializerPromise: Promise<any> | null = null
+const divStyle: React.CSSProperties = {
+  height: '100%',
+  width: '100%',
+}
 
 export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
   webConfig: {
@@ -28,20 +30,15 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
     }
     let isRendered = true
     const initFlutterApp = async () => {
-      if (!engineInitializerPromise) {
-        console.log('create Flutter engine initializer promise...')
-        engineInitializerPromise = new Promise<any>((resolve) => {
-          console.log('setup Flutter engine initializer...')
-          _flutter.loader.loadEntrypoint({
-            entrypointUrl: src,
-            onEntrypointLoaded: async (engineInitializer: any) => {
-              resolve(engineInitializer)
-            }
-          })
+      if (!isRendered) return;
+      const engineInitializer = await new Promise<any>((resolve) => {
+        console.log('setup Flutter engine initializer...')
+        _flutter.loader.loadEntrypoint({
+          entrypointUrl: src,
+          onEntrypointLoaded: resolve,
         })
-      }
-      const engineInitializer = await engineInitializerPromise
-      if (!isRendered) return
+      })
+      if (!isRendered) return;
 
       console.log('initialize Flutter engine...')
       const appRunner = await engineInitializer?.initializeEngine({
@@ -73,10 +70,7 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
     <div
       ref={ref}
       className="flutter"
-      style={{
-        height: '100%',
-        width: '100%',
-      }}
+      style={divStyle}
     >
       {isMultiView &&
         <p>
