@@ -6,7 +6,7 @@ import 'pages/counter.dart';
 import 'pages/dash.dart';
 import 'pages/text.dart';
 
-import 'src/js_interop.dart';
+import 'src/counter_state_manager.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,9 +35,12 @@ class _MyAppState extends State<MyApp> {
       counter: _counter,
       text: _text,
     );
-    final export = createDartExport(_state);
+    _counter.addListener(() {
 
-    broadcastAppEvent('flutter-initialized', export);
+    });
+    // final export = createDartExport(_state);
+
+    // broadcastAppEvent('flutter-initialized', export);
   }
 
   @override

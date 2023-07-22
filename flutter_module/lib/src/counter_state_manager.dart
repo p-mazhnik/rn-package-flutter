@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:js/js.dart';
 
 enum DemoScreen {
   counter('counter'),
@@ -13,11 +12,6 @@ enum DemoScreen {
   String toString() => _screen;
 }
 
-/// This is the bit of state that JS is able to see.
-///
-/// It contains getters/setters/operations and a mechanism to
-/// subscribe to change notifications from an incoming [notifier].
-@JSExport()
 class DemoAppStateManager {
   // Creates a DemoAppStateManager wrapping a ValueNotifier.
   DemoAppStateManager({
@@ -68,21 +62,15 @@ class DemoAppStateManager {
   }
 
   // Allows clients to subscribe to changes to the wrapped value.
-  void onClicksChanged(Function(int) f) {
-    _counter.addListener(() {
-      f(getClicks());
-    });
+  void onClicksChanged(VoidCallback f) {
+    _counter.addListener(f);
   }
 
-  void onTextChanged(Function(String) f) {
-    _text.addListener(() {
-      f(getText());
-    });
+  void onTextChanged(VoidCallback f) {
+    _text.addListener(f);
   }
 
-  void onScreenChanged(Function(String) f) {
-    _screen.addListener(() {
-      f(getScreen());
-    });
+  void onScreenChanged(VoidCallback f) {
+    _screen.addListener(f);
   }
 }
