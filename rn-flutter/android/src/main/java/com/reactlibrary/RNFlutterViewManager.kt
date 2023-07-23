@@ -60,6 +60,9 @@ class RNFlutterViewManager(
                 initialClicks = value,
             )
             else -> {
+                if (viewState.initialClicks == null) {
+                    viewState.initialClicks = value
+                }
                 if (viewState.fragment != null) {
                     viewState.fragment!!.flutterCounterApi?.setClicks(value.toLong()){}
                 }
@@ -74,6 +77,9 @@ class RNFlutterViewManager(
                 initialText = value,
             )
             else -> {
+                if (viewState.initialText == null) {
+                    viewState.initialText = value
+                }
                 if (viewState.fragment != null) {
                     viewState.fragment!!.flutterCounterApi?.setText(value){}
                 }
@@ -88,6 +94,9 @@ class RNFlutterViewManager(
                 initialScreen = value,
             )
             else -> {
+                if (viewState.initialScreen == null) {
+                    viewState.initialScreen = value
+                }
                 if (viewState.fragment != null) {
                     viewState.fragment!!.flutterCounterApi?.setScreen(value){}
                 }
@@ -105,8 +114,6 @@ class RNFlutterViewManager(
         val viewState = fragmentMap[reactNativeViewId]
         val parentView = root.findViewById<ViewGroup>(reactNativeViewId)
         setupLayout(parentView)
-
-        Log.d("com.reactlibrary", "Clicks: ${viewState?.initialClicks?.toLong()}")
 
         val myFragment = RNFlutterFragment(
             reactNativeViewId,

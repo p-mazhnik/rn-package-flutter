@@ -14,7 +14,9 @@ interface FlutterNativeViewProps {
   text: string;
   screen: string;
   clicks: number;
-  onClicksChange?: (event: NativeSyntheticEvent<{ 'value': number }>) => void;
+  onClicksChange?: (event: NativeSyntheticEvent<{ value: number }>) => void;
+  onScreenChange?: (event: NativeSyntheticEvent<{ screen: string }>) => void;
+  onTextChange?: (event: NativeSyntheticEvent<{ text: string }>) => void;
 }
 
 const FlutterNativeView = requireNativeComponent<FlutterNativeViewProps>('RNFlutterView')
@@ -52,6 +54,12 @@ export const FlutterView: React.FC<FlutterViewProps> = ({
       screen={screen}
       onClicksChange={(event) => {
         onClicksChange?.(event.nativeEvent.value)
+      }}
+      onTextChange={(event) => {
+        onTextChange?.(event.nativeEvent.text)
+      }}
+      onScreenChange={(event) => {
+        onScreenChange?.(event.nativeEvent.screen)
       }}
     />
   )
