@@ -4,13 +4,17 @@ import {
   StyleProp,
   UIManager,
   StyleSheet,
-  ViewStyle, Platform
+  ViewStyle, Platform, NativeSyntheticEvent
 } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import type { FlutterViewProps } from './types'
 
 interface FlutterNativeViewProps {
   style?: StyleProp<ViewStyle>;
+  text: string;
+  screen: string;
+  clicks: number;
+  onClicksChange?: (event: NativeSyntheticEvent<{ 'value': number }>) => void;
 }
 
 const FlutterNativeView = requireNativeComponent<FlutterNativeViewProps>('RNFlutterView')
@@ -19,15 +23,22 @@ const createFragment = (viewId: null | number) =>
   UIManager.dispatchViewManagerCommand(
     viewId,
     'create',
-    [viewId],
+    [],
   )
 
-export const FlutterView: React.FC<FlutterViewProps> = () => {
+export const FlutterView: React.FC<FlutterViewProps> = ({
+  onClicksChange,
+  onScreenChange,
+  onTextChange,
+  text,
+  screen,
+  clicks,
+}) => {
   const ref = useRef(null)
 
   useEffect(() => {
+    const viewId = findNodeHandle(ref.current)
     if (Platform.OS === 'android') {
-      const viewId = findNodeHandle(ref.current)
       createFragment(viewId)
     }
   }, [])
@@ -36,6 +47,12 @@ export const FlutterView: React.FC<FlutterViewProps> = () => {
     <FlutterNativeView
       style={styles.view}
       ref={ref}
+      clicks={clicks}
+      text={text}
+      screen={screen}
+      onClicksChange={(event) => {
+        onClicksChange?.(event.nativeEvent.value)
+      }}
     />
   )
 }

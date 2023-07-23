@@ -32,7 +32,9 @@ const styles = StyleSheet.create({
 });
 
 function HomeScreen() {
-  // const [initialCounterValue, setCounter] = useState<number>(0);
+  const [screen, setScreen] = React.useState('counter');
+  const [clicks, setClicks] = React.useState(0);
+  const [text, setText] = React.useState('');
   const backgroundStyle = {
     backgroundColor: Colors.lighter,
     flex: 1,
@@ -55,6 +57,12 @@ function HomeScreen() {
               assetBase: '/flutter/',
               src: 'flutter/main.dart.js',
             }}
+            clicks={clicks}
+            screen={screen}
+            text={text}
+            onClicksChange={setClicks}
+            onTextChange={setText}
+            onScreenChange={setScreen}
           />
         </View>
         <Button
@@ -69,23 +77,11 @@ function HomeScreen() {
               assetBase: '/flutter/',
               src: 'flutter/main.dart.js',
             }}
+            clicks={clicks}
+            text="initial text"
+            screen="counter"
           />
         </View>
-        {/*<View>
-          <Text>Enter initial counter value</Text>
-          <TextInput
-            keyboardType="numeric"
-            onChangeText={text => setCounter(Number(text))}
-            value={initialCounterValue.toString()}
-            maxLength={10}
-          />
-        </View>
-        <View style={{ alignSelf: 'center' }}>
-          <Text>
-            You have pushed the button on the Flutter screen this many times:
-          </Text>
-          <Text style={{ textAlign: 'center' }}>{route.params.counter}</Text>
-        </View>*/}
       </ScrollView>
     </SafeAreaView>
   );

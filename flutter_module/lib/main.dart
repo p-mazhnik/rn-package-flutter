@@ -6,6 +6,7 @@ import 'pages/counter.dart';
 import 'pages/dash.dart';
 import 'pages/text.dart';
 
+import 'src/api.g.dart';
 import 'src/counter_state_manager.dart';
 
 void main() {
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   final ValueNotifier<String> _text = ValueNotifier<String>('');
 
   late final DemoAppStateManager _state;
+  late final HostCounterApi _hostApi;
 
   @override
   void initState() {
@@ -35,12 +37,17 @@ class _MyAppState extends State<MyApp> {
       counter: _counter,
       text: _text,
     );
+    _hostApi = HostCounterApi();
+    FlutterCounterApi.setup(_state);
     _counter.addListener(() {
-
+      _hostApi.setClicks(_counter.value);
     });
-    // final export = createDartExport(_state);
-
-    // broadcastAppEvent('flutter-initialized', export);
+    _screen.addListener(() {
+      _hostApi.setScreen(_screen.value.name);
+    });
+    _text.addListener(() {
+      _hostApi.setText(_text.value);
+    });
   }
 
   @override

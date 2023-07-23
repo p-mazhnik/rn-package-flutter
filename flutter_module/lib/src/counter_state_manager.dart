@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import 'api.g.dart';
+
 enum DemoScreen {
   counter('counter'),
   text('text'),
@@ -12,7 +14,7 @@ enum DemoScreen {
   String toString() => _screen;
 }
 
-class DemoAppStateManager {
+class DemoAppStateManager extends FlutterCounterApi {
   // Creates a DemoAppStateManager wrapping a ValueNotifier.
   DemoAppStateManager({
     required ValueNotifier<DemoScreen> screen,
@@ -31,6 +33,7 @@ class DemoAppStateManager {
     return _counter.value;
   }
 
+  @override
   void setClicks(int value) {
     _counter.value = value;
   }
@@ -44,6 +47,7 @@ class DemoAppStateManager {
   }
 
   // _text
+  @override
   void setText(String text) {
     _text.value = text;
   }
@@ -53,6 +57,7 @@ class DemoAppStateManager {
   }
 
   // _screen
+  @override
   void setScreen(String screen) {
     _screen.value = DemoScreen.values.byName(screen);
   }
