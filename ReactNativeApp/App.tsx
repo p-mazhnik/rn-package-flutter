@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     marginTop: 8,
     paddingHorizontal: 20,
     justifyContent: 'center',
+    minWidth: Platform.select({
+      web: 500,
+    }),
   },
 });
 
@@ -46,9 +49,7 @@ function HomeScreen() {
   const [text, setText] = React.useState('');
   return (
     <View style={styles.app}>
-      {/*<StatusBar barStyle={'dark-content'} />*/}
       <Appbar.Header elevated>
-        {/*<Appbar.Action icon="menu" onPress={() => {}} />*/}
         <Appbar.Content
           title={`React Native ${
             Platform.OS === 'web' ? 'Web' : ''
