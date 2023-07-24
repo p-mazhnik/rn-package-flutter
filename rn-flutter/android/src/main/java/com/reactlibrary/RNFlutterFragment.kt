@@ -30,6 +30,7 @@ class RNFlutterFragment(
     }
 
     override fun shouldAttachEngineToActivity(): Boolean {
+        // return 'true' if you use ActivityAware flutter plugins
         return false
     }
 
