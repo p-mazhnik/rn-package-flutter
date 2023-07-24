@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.RCTEventEmitter
 import io.flutter.embedding.android.FlutterFragment
+import io.flutter.embedding.android.RenderMode
 import io.flutter.embedding.engine.FlutterEngine
 
 class RNFlutterFragment(
@@ -19,6 +20,17 @@ class RNFlutterFragment(
 
     override fun getCachedEngineGroupId(): String {
         return FlutterEngineHelper.ENGINE_GROUP_ID
+    }
+
+    override fun getRenderMode(): RenderMode {
+        // SurfaceView positions itself at a higher z-index than all other Android Views,
+        // which means it appears above all other React-Native components.
+        // That is why we use TextureView here.
+        return RenderMode.texture
+    }
+
+    override fun shouldAttachEngineToActivity(): Boolean {
+        return false
     }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {

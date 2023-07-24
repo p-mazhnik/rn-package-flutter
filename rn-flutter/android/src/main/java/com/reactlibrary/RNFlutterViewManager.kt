@@ -113,6 +113,7 @@ class RNFlutterViewManager(
 
         val viewState = fragmentMap[reactNativeViewId]
         val parentView = root.findViewById<ViewGroup>(reactNativeViewId)
+
         setupLayout(parentView)
 
         val myFragment = RNFlutterFragment(
@@ -155,7 +156,7 @@ class RNFlutterViewManager(
         fragmentMap.remove(view.id)
     }
 
-    private fun setupLayout(view: View) {
+    private fun setupLayout(view: ViewGroup) {
         Choreographer.getInstance().postFrameCallback(object : Choreographer.FrameCallback {
             override fun doFrame(frameTimeNanos: Long) {
                 manuallyLayoutChildren(view)
@@ -168,12 +169,22 @@ class RNFlutterViewManager(
     /**
      * Layout all children properly
      */
-    private fun manuallyLayoutChildren(view: View) {
-        view.measure(
-            View.MeasureSpec.makeMeasureSpec(view.measuredWidth, View.MeasureSpec.EXACTLY),
-            View.MeasureSpec.makeMeasureSpec(view.measuredHeight, View.MeasureSpec.EXACTLY),
-        )
-        view.layout(view.left, view.top, view.right, view.bottom)
+    private fun manuallyLayoutChildren(view: ViewGroup) {
+        for (i in 0 until view.childCount) {
+            val child = view.getChildAt(i)
+
+            child.measure(
+                View.MeasureSpec.makeMeasureSpec(view.measuredWidth, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(view.measuredHeight, View.MeasureSpec.EXACTLY)
+            )
+
+            child.layout(0, 0, child.measuredWidth, child.measuredHeight)
+        }
+//        view.measure(
+//            View.MeasureSpec.makeMeasureSpec(view.measuredWidth, View.MeasureSpec.EXACTLY),
+//            View.MeasureSpec.makeMeasureSpec(view.measuredHeight, View.MeasureSpec.EXACTLY),
+//        )
+//        view.layout(view.left, view.top, view.right, view.bottom)
     }
 
     override fun getExportedCustomDirectEventTypeConstants(): Map<String, Map<String, String>> {

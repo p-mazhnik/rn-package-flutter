@@ -1,33 +1,48 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
 import {
-  Button,
   SafeAreaView,
   ScrollView,
-  StatusBar,
   View,
   StyleSheet,
+  Platform,
 } from 'react-native';
+import { Appbar, SegmentedButtons, TextInput } from 'react-native-paper';
+// @ts-ignore
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FlutterView } from 'flutter-module-rn';
 
-// import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
-const Colors = {
-  lighter: '#eee',
-};
-
 const styles = StyleSheet.create({
-  componentInScroll: {
-    height: 200,
-    backgroundColor: 'white',
+  app: {
+    flex: 1,
+  },
+  flutterContainer: {
+    overflow: 'hidden',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#eee',
+    marginVertical: 8,
+    height: 480,
+    width: 320,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  main: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textInputContainer: {
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    margin: 8,
+  },
+  textInput: {
+    flex: 1,
+  },
+  segmentedButtons: {
+    marginTop: 8,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
   },
 });
 
@@ -35,22 +50,80 @@ function HomeScreen() {
   const [screen, setScreen] = React.useState('counter');
   const [clicks, setClicks] = React.useState(0);
   const [text, setText] = React.useState('');
-  const backgroundStyle = {
-    backgroundColor: Colors.lighter,
-    flex: 1,
-  };
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={'dark-content'} />
+    <SafeAreaView style={styles.app}>
+      {/*<StatusBar barStyle={'dark-content'} />*/}
+      <Appbar.Header elevated>
+        {/*<Appbar.Action icon="menu" onPress={() => {}} />*/}
+        <Appbar.Content
+          title={`React Native ${
+            Platform.OS === 'web' ? 'Web' : ''
+          } 🤝 Flutter`}
+        />
+        <Icon name="flutter-dash" size={30} />
+      </Appbar.Header>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Button
-          color="orange"
-          title={'React Native button'}
-          onPress={() => {}}
+        style={styles.scrollView}
+        contentContainerStyle={styles.main}>
+        <SegmentedButtons
+          style={styles.segmentedButtons}
+          value={screen}
+          onValueChange={setScreen}
+          buttons={[
+            {
+              value: 'counter',
+              label: 'Counter',
+              icon: 'numeric',
+            },
+            {
+              value: 'text',
+              label: 'TextField',
+              icon: 'form-textbox',
+            },
+            {
+              value: 'dash',
+              label: 'Custom App',
+              icon: 'application-edit-outline',
+            },
+          ]}
         />
-        <View style={styles.componentInScroll}>
+        {screen === 'counter' && (
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              mode="outlined"
+              label="Clicks"
+              onChangeText={textValue => {
+                if (textValue && !isNaN(parseInt(textValue, 10))) {
+                  setClicks(parseInt(textValue, 10));
+                } else if (textValue === '') {
+                  setClicks(0);
+                }
+              }}
+              value={clicks?.toString()}
+              keyboardType="numeric"
+            />
+          </View>
+        )}
+        {screen !== 'counter' && (
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              mode="outlined"
+              label="Text"
+              value={text}
+              onChangeText={setText}
+              right={
+                <TextInput.Icon
+                  icon="close-circle-outline"
+                  onPress={() => setText('')}
+                />
+              }
+            />
+          </View>
+        )}
+        <View style={styles.flutterContainer}>
           <FlutterView
             webConfig={{
               useIframe: false,
@@ -65,12 +138,7 @@ function HomeScreen() {
             onScreenChange={setScreen}
           />
         </View>
-        <Button
-          color="orange"
-          title={'React Native button'}
-          onPress={() => {}}
-        />
-        <View style={styles.componentInScroll}>
+        <View style={styles.flutterContainer}>
           <FlutterView
             webConfig={{
               useIframe: true,

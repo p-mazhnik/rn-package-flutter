@@ -4,7 +4,11 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.reactlibrary.FlutterEngineHelper;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class MainActivity extends ReactActivity {
 
@@ -21,6 +25,37 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(null);
+  }
+
+  @Override
+  protected void onPostResume() {
+    Log.d("com.reactnativeapp", "onPostResume");
+    super.onPostResume();
+    FlutterEngineHelper.handlePostResume(this);
+  }
+
+  @Override
+  public void onTrimMemory(int level) {
+    super.onTrimMemory(level);
+    FlutterEngineHelper.handleTrimMemory(this, level);
+  }
+
+  @Override
+  protected void onUserLeaveHint() {
+    super.onUserLeaveHint();
+    FlutterEngineHelper.handleUserLeaveHint(this);
+  }
+
+  @Override
+  public void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    FlutterEngineHelper.handleNewIntent(this, intent);
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    FlutterEngineHelper.handleRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
     /**

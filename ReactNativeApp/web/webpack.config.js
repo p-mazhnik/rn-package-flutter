@@ -77,6 +77,14 @@ module.exports = {
       babelLoaderConfiguration,
       imageLoaderConfiguration,
       {
+        test: /\.ttf$/,
+        loader: 'url-loader', // or directly file-loader
+        include: path.resolve(
+          appDirectory,
+          'node_modules/react-native-vector-icons',
+        ),
+      },
+      {
         test: /\.html$/i,
         loader: 'html-loader',
       },
