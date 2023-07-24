@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import { ScrollView, View, StyleSheet, Platform } from 'react-native';
 import { Appbar, SegmentedButtons, TextInput } from 'react-native-paper';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';

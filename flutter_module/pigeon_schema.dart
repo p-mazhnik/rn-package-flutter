@@ -1,7 +1,7 @@
 import 'package:pigeon/pigeon.dart';
 
 @ConfigurePigeon(PigeonOptions(
-  dartOut: 'lib/src/api.g.dart',
+  dartOut: 'lib/src/communication/native_api.g.dart',
   kotlinOut:
       '../rn-flutter/android/src/main/java/com/reactlibrary/Messages.g.kt',
   kotlinOptions: KotlinOptions(package: 'com.reactlibrary'),

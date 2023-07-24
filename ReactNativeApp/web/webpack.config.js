@@ -22,6 +22,7 @@ const compileNodeModules = [
   // Add every react-native package that needs compiling
   'react-native-uncompiled',
   'flutter-module-rn',
+  'react-native-vector-icons',
 ].map(moduleName => path.resolve(appDirectory, `node_modules/${moduleName}`));
 const babelLoaderConfiguration = {
   test: /\.js$|tsx?$/,

@@ -6,9 +6,9 @@ export const FlutterViewIframe: React.FC<FlutterViewProps> = ({
   webConfig: {
     assetBase = defaultWebConfig.assetBase!,
   } = defaultWebConfig,
-  onClicksChange,
-  onScreenChange,
-  onTextChange,
+  // onClicksChange,
+  // onScreenChange,
+  // onTextChange,
   text,
   screen,
   clicks,
@@ -18,9 +18,9 @@ export const FlutterViewIframe: React.FC<FlutterViewProps> = ({
   const onFlutterAppLoaded = (state: any) => {
     flutterState.current = state
     // listen to state changes
-    state.onClicksChanged(onClicksChange)
-    state.onTextChanged(onTextChange)
-    state.onScreenChanged(onScreenChange)
+    // state.onClicksChanged(onClicksChange)
+    // state.onTextChanged(onTextChange)
+    // state.onScreenChanged(onScreenChange)
     // set initial values
     state.setText(text)
     state.setScreen(screen)
