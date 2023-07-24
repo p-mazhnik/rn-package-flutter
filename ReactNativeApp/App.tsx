@@ -51,7 +51,7 @@ function HomeScreen() {
   const [clicks, setClicks] = React.useState(0);
   const [text, setText] = React.useState('');
   return (
-    <SafeAreaView style={styles.app}>
+    <View style={styles.app}>
       {/*<StatusBar barStyle={'dark-content'} />*/}
       <Appbar.Header elevated>
         {/*<Appbar.Action icon="menu" onPress={() => {}} />*/}
@@ -151,7 +151,7 @@ function HomeScreen() {
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
