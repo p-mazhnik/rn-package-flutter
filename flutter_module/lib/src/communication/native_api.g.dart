@@ -17,6 +17,8 @@ abstract class FlutterCounterApi {
 
   void setClicks(int value);
 
+  void setTheme(String theme);
+
   static void setup(FlutterCounterApi? api, {BinaryMessenger? binaryMessenger}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
@@ -71,6 +73,25 @@ abstract class FlutterCounterApi {
           assert(arg_value != null,
               'Argument for dev.flutter.pigeon.flutter_module.FlutterCounterApi.setClicks was null, expected non-null int.');
           api.setClicks(arg_value!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.flutter_module.FlutterCounterApi.setTheme', codec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.flutter_module.FlutterCounterApi.setTheme was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_theme = (args[0] as String?);
+          assert(arg_theme != null,
+              'Argument for dev.flutter.pigeon.flutter_module.FlutterCounterApi.setTheme was null, expected non-null String.');
+          api.setTheme(arg_theme!);
           return;
         });
       }

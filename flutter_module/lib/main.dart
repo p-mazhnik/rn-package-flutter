@@ -24,10 +24,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final ValueNotifier<DemoScreen> _screen =
-      ValueNotifier<DemoScreen>(DemoScreen.counter);
+  final ValueNotifier<DemoScreen> _screen = ValueNotifier<DemoScreen>(
+    DemoScreen.counter,
+  );
   final ValueNotifier<int> _counter = ValueNotifier<int>(0);
   final ValueNotifier<String> _text = ValueNotifier<String>('');
+
+  final ValueNotifier<ThemeMode> _theme = ValueNotifier<ThemeMode>(
+    ThemeMode.light,
+  );
+  late ThemeMode _themeMode;
 
   late final DemoAppStateManager _state;
 
@@ -38,8 +44,15 @@ class _MyAppState extends State<MyApp> {
       screen: _screen,
       counter: _counter,
       text: _text,
+      theme: _theme,
     );
+    _themeMode = _theme.value;
     multi_platform.setupFlutterApi(_state);
+    _theme.addListener(() {
+      setState(() {
+        _themeMode = _theme.value;
+      });
+    });
   }
 
   @override
@@ -47,9 +60,20 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Element embedding',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.light,
+        ),
         useMaterial3: true,
       ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+      ),
+      themeMode: _themeMode,
       home: ValueListenableBuilder<DemoScreen>(
         valueListenable: _screen,
         builder: (context, value, child) => demoScreenRouter(value),

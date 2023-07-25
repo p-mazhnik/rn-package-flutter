@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_overrides
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_module/src/counter_state_manager.dart';
 import 'package:js/js.dart';
 
@@ -12,6 +12,7 @@ class JSDemoAppStateManager extends DemoAppStateManager {
     required super.screen,
     required super.counter,
     required super.text,
+    required super.theme,
   });
 
   @override
@@ -43,6 +44,11 @@ class JSDemoAppStateManager extends DemoAppStateManager {
   void setScreen(String screen) {
     super.setScreen(screen);
   }
+
+  @override
+  void setTheme(String theme) {
+    super.setTheme(theme);
+  }
 }
 
 void setupFlutterApi(DemoAppStateManager state) {
@@ -55,6 +61,12 @@ DemoAppStateManager getStateManager({
   required ValueNotifier<DemoScreen> screen,
   required ValueNotifier<int> counter,
   required ValueNotifier<String> text,
+  required ValueNotifier<ThemeMode> theme,
 }) {
-  return JSDemoAppStateManager(screen: screen, counter: counter, text: text);
+  return JSDemoAppStateManager(
+    screen: screen,
+    counter: counter,
+    text: text,
+    theme: theme,
+  );
 }

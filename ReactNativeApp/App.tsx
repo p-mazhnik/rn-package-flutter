@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#eee',
     marginVertical: 8,
     height: 480,
     width: 320,
@@ -53,6 +52,13 @@ const styles = StyleSheet.create({
   },
 });
 
+const DashIcon = () => {
+  const theme = useTheme();
+  return (
+    <Icon name="flutter-dash" size={30} color={theme.colors.onSurfaceVariant} />
+  );
+};
+
 export function HomeScreen({
   isDarkMode,
   setIsDarkMode,
@@ -64,9 +70,6 @@ export function HomeScreen({
   const [screen, setScreen] = React.useState('counter');
   const [clicks, setClicks] = React.useState(0);
   const [text, setText] = React.useState('');
-  const dashIcon = () => (
-    <Icon name="flutter-dash" size={30} color={theme.colors.onSurfaceVariant} />
-  );
   return (
     <View style={{ ...styles.app, backgroundColor: theme.colors.background }}>
       <Appbar.Header mode="small" elevated>
@@ -89,7 +92,7 @@ export function HomeScreen({
           }
         />
         <Appbar.Action
-          icon={dashIcon}
+          icon={DashIcon}
           size={30}
           onPress={() => Linking.openURL('https://flutter.dev/')}
         />
@@ -155,13 +158,18 @@ export function HomeScreen({
             />
           </View>
         )}
-        <View style={styles.flutterContainer}>
+        <View
+          style={{
+            ...styles.flutterContainer,
+            borderColor: isDarkMode ? theme.colors.onSecondary : '#eee',
+          }}>
           <FlutterView
             webConfig={{
               useIframe: false,
               assetBase: '/flutter/',
               src: 'flutter/main.dart.js',
             }}
+            theme={isDarkMode ? 'dark' : 'light'}
             clicks={clicks}
             screen={screen}
             text={text}
@@ -170,13 +178,18 @@ export function HomeScreen({
             onScreenChange={setScreen}
           />
         </View>
-        <View style={styles.flutterContainer}>
+        <View
+          style={{
+            ...styles.flutterContainer,
+            borderColor: isDarkMode ? theme.colors.onSecondary : '#eee',
+          }}>
           <FlutterView
             webConfig={{
               useIframe: true,
               assetBase: '/flutter/',
               src: 'flutter/main.dart.js',
             }}
+            theme={isDarkMode ? 'dark' : 'light'}
             clicks={clicks}
             text="initial text"
             screen="counter"

@@ -18,6 +18,7 @@ private data class FlutterViewState(
     var initialClicks: Int? = null,
     var initialText: String? = null,
     var initialScreen: String? = null,
+    var initialTheme: String? = null,
 )
 
 class RNFlutterViewManager(
@@ -104,6 +105,23 @@ class RNFlutterViewManager(
         }
     }
 
+    @ReactProp(name = "theme")
+    fun setTheme(view: ViewGroup, value: String) {
+        when (val viewState = fragmentMap[view.id]) {
+            null -> fragmentMap[view.id] = FlutterViewState(
+                initialTheme = value,
+            )
+            else -> {
+                if (viewState.initialTheme == null) {
+                    viewState.initialTheme = value
+                }
+                if (viewState.fragment != null) {
+                    viewState.fragment!!.flutterCounterApi?.setTheme(value){}
+                }
+            }
+        }
+    }
+
     /**
      * Replace your React Native view with a custom fragment
      */
@@ -122,6 +140,7 @@ class RNFlutterViewManager(
             viewState?.initialClicks?.toLong(),
             viewState?.initialText,
             viewState?.initialScreen,
+            viewState?.initialTheme,
         )
         when (val state = fragmentMap[reactNativeViewId]) {
             null -> fragmentMap[reactNativeViewId] = FlutterViewState(

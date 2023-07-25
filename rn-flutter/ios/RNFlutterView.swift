@@ -34,6 +34,13 @@ class RNFlutterView: UIView, HostCounterApi {
       }
     }
   }
+  @objc var theme: String? {
+    didSet {
+      if let t = theme {
+        flutterCounterApi.setTheme(theme: t) {}
+      }
+    }
+  }
 
   override init(frame: CGRect) {
     let appDelegate: FlutterEngineProvider = UIApplication.shared.delegate as! FlutterEngineProvider

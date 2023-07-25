@@ -4869,7 +4869,7 @@ flow-parser@^0.206.0:
   integrity sha512-HVzoK3r6Vsg+lKvlIZzaWNBVai+FXTX1wdYhz/wVlH13tb/gOdLXmlTqy6odmTBhT5UoWUbq0k8263Qhr9d88w==
 
 "flutter-module-rn@file:../rn-flutter":
-  version "2.1.0"
+  version "2.1.1"
 
 follow-redirects@^1.0.0:
   version "1.14.7"

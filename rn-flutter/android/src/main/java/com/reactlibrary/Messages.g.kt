@@ -69,6 +69,12 @@ class FlutterCounterApi(private val binaryMessenger: BinaryMessenger) {
       callback()
     }
   }
+  fun setTheme(themeArg: String, callback: () -> Unit) {
+    val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_module.FlutterCounterApi.setTheme", codec)
+    channel.send(listOf(themeArg)) {
+      callback()
+    }
+  }
 }
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface HostCounterApi {

@@ -16,6 +16,8 @@ abstract class FlutterCounterApi {
   void setScreen(String screen);
 
   void setClicks(int value);
+
+  void setTheme(String theme);
 }
 
 @HostApi()

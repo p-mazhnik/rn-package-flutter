@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import 'communication/native_api.g.dart';
 
@@ -20,13 +20,16 @@ class DemoAppStateManager extends FlutterCounterApi {
     required ValueNotifier<DemoScreen> screen,
     required ValueNotifier<int> counter,
     required ValueNotifier<String> text,
+    required ValueNotifier<ThemeMode> theme,
   })  : _counter = counter,
         _text = text,
-        _screen = screen;
+        _screen = screen,
+        _theme = theme;
 
   final ValueNotifier<DemoScreen> _screen;
   final ValueNotifier<int> _counter;
   final ValueNotifier<String> _text;
+  final ValueNotifier<ThemeMode> _theme;
 
   // _counter
   int getClicks() {
@@ -83,5 +86,14 @@ class DemoAppStateManager extends FlutterCounterApi {
     _screen.addListener(() {
       f(getScreen());
     });
+  }
+
+  @override
+  void setTheme(String theme) {
+    try {
+      _theme.value = ThemeMode.values.byName(theme);
+    } on ArgumentError {
+      // ignore
+    }
   }
 }

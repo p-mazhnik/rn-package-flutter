@@ -23,6 +23,7 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
   text,
   screen,
   clicks,
+  theme,
 }) => {
   const flutterState = useRef<any>(null)
   const ref = useRef<HTMLDivElement>(null)
@@ -38,6 +39,7 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
     state.setText(text)
     state.setScreen(screen)
     state.setClicks(clicks)
+    state.setTheme(theme)
   }
 
   useEffect(() => {
@@ -92,6 +94,9 @@ export const FlutterViewCustomElement: React.FC<FlutterViewProps> = memo(({
   useEffect(() => {
     flutterState.current?.setScreen(screen)
   }, [screen]);
+  useEffect(() => {
+    flutterState.current?.setTheme(theme)
+  }, [theme]);
   useEffect(() => {
     flutterState.current?.setClicks(clicks)
   }, [clicks]);

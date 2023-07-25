@@ -15,6 +15,7 @@ class RNFlutterFragment(
     private val initialClicks: Long?,
     private val initialText: String?,
     private val initialScreen: String?,
+    private val initialTheme: String?,
 ): FlutterFragment() {
     var flutterCounterApi: FlutterCounterApi? = null
 
@@ -47,6 +48,9 @@ class RNFlutterFragment(
         }
         if (initialScreen != null) {
             flutterCounterApi?.setScreen(initialScreen) {}
+        }
+        if (initialTheme != null) {
+            flutterCounterApi?.setTheme(initialTheme) {}
         }
         super.configureFlutterEngine(flutterEngine)
     }

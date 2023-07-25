@@ -12,6 +12,7 @@ export const FlutterViewIframe: React.FC<FlutterViewProps> = ({
   text,
   screen,
   clicks,
+  theme,
 }) => {
   const flutterState = useRef<any>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
@@ -25,6 +26,7 @@ export const FlutterViewIframe: React.FC<FlutterViewProps> = ({
     state.setText(text)
     state.setScreen(screen)
     state.setClicks(clicks)
+    state.setTheme(theme)
   }
 
   useEffect(() => {
@@ -48,6 +50,9 @@ export const FlutterViewIframe: React.FC<FlutterViewProps> = ({
   useEffect(() => {
     flutterState.current?.setScreen(screen)
   }, [screen]);
+  useEffect(() => {
+    flutterState.current?.setTheme(theme)
+  }, [theme]);
   useEffect(() => {
     flutterState.current?.setClicks(clicks)
   }, [clicks]);

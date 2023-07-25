@@ -14,6 +14,7 @@ export interface FlutterViewProps {
   text: string;
   screen: string;
   clicks: number;
+  theme: 'dark' | 'light';
 }
 
 export const defaultWebConfig: WebConfig = {

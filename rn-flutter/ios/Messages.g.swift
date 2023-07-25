@@ -57,6 +57,12 @@ class FlutterCounterApi {
       completion()
     }
   }
+  func setTheme(theme themeArg: String, completion: @escaping () -> Void) {
+    let channel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_module.FlutterCounterApi.setTheme", binaryMessenger: binaryMessenger)
+    channel.sendMessage([themeArg] as [Any?]) { _ in
+      completion()
+    }
+  }
 }
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol HostCounterApi {

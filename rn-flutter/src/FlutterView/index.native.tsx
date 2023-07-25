@@ -14,6 +14,7 @@ interface FlutterNativeViewProps {
   text: string;
   screen: string;
   clicks: number;
+  theme: 'dark' | 'light';
   onClicksChange?: (event: NativeSyntheticEvent<{ value: number }>) => void;
   onScreenChange?: (event: NativeSyntheticEvent<{ screen: string }>) => void;
   onTextChange?: (event: NativeSyntheticEvent<{ text: string }>) => void;
@@ -35,6 +36,7 @@ export const FlutterView: React.FC<FlutterViewProps> = ({
   text,
   screen,
   clicks,
+  theme,
 }) => {
   const ref = useRef(null)
 
@@ -52,6 +54,7 @@ export const FlutterView: React.FC<FlutterViewProps> = ({
       clicks={clicks}
       text={text}
       screen={screen}
+      theme={theme}
       onClicksChange={(event) => {
         onClicksChange?.(event.nativeEvent.value)
       }}

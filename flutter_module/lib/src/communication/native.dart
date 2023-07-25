@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import 'native_api.g.dart';
 import '../counter_state_manager.dart';
@@ -16,6 +16,12 @@ DemoAppStateManager getStateManager({
   required ValueNotifier<DemoScreen> screen,
   required ValueNotifier<int> counter,
   required ValueNotifier<String> text,
+  required ValueNotifier<ThemeMode> theme,
 }) {
-  return DemoAppStateManager(screen: screen, counter: counter, text: text);
+  return DemoAppStateManager(
+    screen: screen,
+    counter: counter,
+    text: text,
+    theme: theme,
+  );
 }
