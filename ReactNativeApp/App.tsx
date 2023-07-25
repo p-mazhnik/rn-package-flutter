@@ -50,7 +50,7 @@ function HomeScreen() {
   const dashIcon = () => <Icon name="flutter-dash" size={30} />;
   return (
     <View style={styles.app}>
-      <Appbar.Header elevated>
+      <Appbar.Header mode="small" elevated>
         <Appbar.Content
           title={`React Native ${
             Platform.OS === 'web' ? 'Web' : ''
