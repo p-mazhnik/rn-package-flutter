@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Platform } from 'react-native';
+import { ScrollView, View, StyleSheet, Platform, Linking } from 'react-native';
 import { Appbar, SegmentedButtons, TextInput } from 'react-native-paper';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -47,6 +47,7 @@ function HomeScreen() {
   const [screen, setScreen] = React.useState('counter');
   const [clicks, setClicks] = React.useState(0);
   const [text, setText] = React.useState('');
+  const dashIcon = () => <Icon name="flutter-dash" size={30} />;
   return (
     <View style={styles.app}>
       <Appbar.Header elevated>
@@ -55,7 +56,18 @@ function HomeScreen() {
             Platform.OS === 'web' ? 'Web' : ''
           } 🤝 Flutter`}
         />
-        <Icon name="flutter-dash" size={30} />
+        <Appbar.Action
+          icon="github"
+          size={30}
+          onPress={() =>
+            Linking.openURL('https://github.com/p-mazhnik/rn-package-flutter/')
+          }
+        />
+        <Appbar.Action
+          icon={dashIcon}
+          size={30}
+          onPress={() => Linking.openURL('https://flutter.dev/')}
+        />
       </Appbar.Header>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
