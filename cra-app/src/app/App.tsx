@@ -202,6 +202,7 @@ function App () {
               assetBase: process.env.PUBLIC_URL + '/flutter/',
               src: process.env.PUBLIC_URL + '/flutter/main.dart.js',
             }}
+            theme='light'
             onClicksChange={setClicks}
             onScreenChange={setScreen}
             onTextChange={setText}
