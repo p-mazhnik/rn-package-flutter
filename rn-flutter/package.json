@@ -1,7 +1,7 @@
 {
   "name": "flutter-module-rn",
   "title": "Flutter module RN",
-  "version": "2.0.0",
+  "version": "2.1.1",
   "license": "MIT",
   "description": "Flutter module as a React Native package",
   "main": "build/rn/commonjs/index.js",
@@ -28,10 +28,10 @@
   ],
   "scripts": {
     "rn:build": "bob build",
-    "android:build": "cd ../flutter_module && flutter build aar && ncp build/host ../rn-flutter/build/host && cd ../rn-flutter",
-    "ios:build": "cd ../flutter_module && flutter build ios-framework --cocoapods --no-profile --output=../rn-flutter/build/ios/framework && cd ../rn-flutter && yarn ios:zip",
-    "ios:zip": "cd ./build/ios/framework && mv Release/Flutter.podspec . && zip -rm Debug.zip Debug && zip -rm Release.zip Release",
-    "web:build": "cd ../flutter_module &&  flutter build web --base-href /flutter/ --output=../rn-flutter/build/web && cd ../rn-flutter"
+    "android:build": "cd ../flutter_module && flutter build aar && ncp build/host ../rn-flutter/build/host && cd -",
+    "ios:build": "cd ../flutter_module && flutter build ios-framework --cocoapods --no-profile --output=../rn-flutter/build/ios/framework && cd - && yarn ios:zip",
+    "ios:zip": "cd ./build/ios/framework && mv Release/Flutter.podspec . && zip -rm Debug.zip Debug && zip -rm Release.zip Release && cd -",
+    "web:build": "cd ../flutter_module && flutter build web --base-href /flutter/ --output=../rn-flutter/build/web && cd -"
   },
   "author": {
     "name": "p-mazhnik",

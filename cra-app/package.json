@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.0",
+    "@mui/material": "^5.14.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -18,13 +22,13 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "prestart": "rimraf node_modules/.cache/ && yarn copy-flutter-assets",
+    "prestart": "rimraf node_modules/.cache/",
     "start": "react-scripts start",
-    "prebuild": "yarn copy-flutter-assets",
+    "prebuild": "yarn upgrade-flutter",
     "build": "react-scripts build",
-    "test": "yarn copy-flutter-assets && react-scripts test",
+    "test": "yarn upgrade-flutter && react-scripts test",
     "copy-flutter-assets": "rimraf public/flutter && ncp ../rn-flutter/build/web public/flutter",
-    "upgrade-flutter": "cd ../rn-flutter && yarn rn:build && cd - && yarn upgrade flutter-module-rn"
+    "upgrade-flutter": "yarn --cwd ../rn-flutter web:build && yarn --cwd ../rn-flutter rn:build && yarn upgrade flutter-module-rn && yarn copy-flutter-assets"
   },
   "eslintConfig": {
     "extends": [
