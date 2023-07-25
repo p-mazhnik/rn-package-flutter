@@ -64,7 +64,7 @@ Used as a dependency in `ReactNativeApp` and `cra-app`.
 Flutter module written in Dart.
 
 - The [pigeon](https://pub.dev/packages/pigeon) plugin is used to generate interop APIs and data classes on mobile.
-- `@staticInterop` and `createDartExport` methods are used to allow certain Dart functions to be called from JavaScript
+- `@staticInterop` and `createDartExport` methods are used to allow certain Dart functions to be called from JavaScript on web.
 
 
 ## Main Libraries Used 🛠
