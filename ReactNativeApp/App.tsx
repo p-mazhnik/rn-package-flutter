@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { ScrollView, View, StyleSheet, Platform, Linking } from 'react-native';
-import { Appbar, SegmentedButtons, TextInput } from 'react-native-paper';
+import {
+  Appbar,
+  SegmentedButtons,
+  TextInput,
+  useTheme,
+} from 'react-native-paper';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FlutterView } from 'flutter-module-rn';
@@ -8,6 +13,11 @@ import { FlutterView } from 'flutter-module-rn';
 const styles = StyleSheet.create({
   app: {
     flex: 1,
+  },
+  appBarTitleStyle: {
+    fontSize: Platform.select({
+      native: 18,
+    }),
   },
   flutterContainer: {
     overflow: 'hidden',
@@ -43,18 +53,33 @@ const styles = StyleSheet.create({
   },
 });
 
-function HomeScreen() {
+export function HomeScreen({
+  isDarkMode,
+  setIsDarkMode,
+}: {
+  isDarkMode: boolean;
+  setIsDarkMode: Dispatch<SetStateAction<boolean>>;
+}) {
+  const theme = useTheme();
   const [screen, setScreen] = React.useState('counter');
   const [clicks, setClicks] = React.useState(0);
   const [text, setText] = React.useState('');
-  const dashIcon = () => <Icon name="flutter-dash" size={30} />;
+  const dashIcon = () => (
+    <Icon name="flutter-dash" size={30} color={theme.colors.onSurfaceVariant} />
+  );
   return (
-    <View style={styles.app}>
+    <View style={{ ...styles.app, backgroundColor: theme.colors.background }}>
       <Appbar.Header mode="small" elevated>
         <Appbar.Content
+          titleStyle={styles.appBarTitleStyle}
           title={`React Native ${
             Platform.OS === 'web' ? 'Web' : ''
           } 🤝 Flutter`}
+        />
+        <Appbar.Action
+          icon={isDarkMode ? 'moon-waning-crescent' : 'weather-sunny'}
+          size={30}
+          onPress={() => setIsDarkMode(oldValue => !oldValue)}
         />
         <Appbar.Action
           icon="github"
@@ -161,9 +186,3 @@ function HomeScreen() {
     </View>
   );
 }
-
-const App: React.FC = () => {
-  return <HomeScreen />;
-};
-
-export default App;

@@ -4,13 +4,14 @@
 
 import React from 'react';
 import { AppRegistry, Platform } from 'react-native';
-import App from './App';
+import { HomeScreen } from './App';
 import { name as appName } from './app.json';
-import { PaperProvider, MD3LightTheme } from 'react-native-paper';
+import { PaperProvider, MD3LightTheme, MD3DarkTheme } from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/Fonts/MaterialIcons.ttf';
 import MaterialCommunityIcons from 'react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf';
 
 export default function Main() {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
   const getWebFonts = fontFamily => {
     return `@font-face {
       src: url(${
@@ -20,7 +21,7 @@ export default function Main() {
     }`;
   };
   return (
-    <PaperProvider theme={MD3LightTheme}>
+    <PaperProvider theme={isDarkMode ? MD3DarkTheme : MD3LightTheme}>
       <React.Fragment>
         {Platform.OS === 'web' ? (
           <style type="text/css">{`
@@ -28,7 +29,7 @@ export default function Main() {
         ${getWebFonts('MaterialIcons')}
       `}</style>
         ) : null}
-        <App />
+        <HomeScreen isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       </React.Fragment>
     </PaperProvider>
   );
