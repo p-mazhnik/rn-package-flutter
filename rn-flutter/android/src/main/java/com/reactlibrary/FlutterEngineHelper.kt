@@ -83,5 +83,19 @@ class FlutterEngineHelper {
                 )
             }
         }
+
+        @JvmStatic
+        fun handleActivityResult(
+            activity: FragmentActivity,
+            requestCode: Int,
+            resultCode: Int,
+            data: Intent?
+        ) {
+            val flutterFragments: List<FlutterFragment> =
+                activity.supportFragmentManager.fragments.filterIsInstance<FlutterFragment>()
+            for (fragment in flutterFragments) {
+                fragment.onActivityResult(requestCode, resultCode, data)
+            }
+        }
     }
 }

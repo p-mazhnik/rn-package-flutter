@@ -58,6 +58,12 @@ public class MainActivity extends ReactActivity {
     FlutterEngineHelper.handleRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    FlutterEngineHelper.handleActivityResult(this, requestCode, resultCode, data);
+  }
+
     /**
     * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link
     * DefaultReactActivityDelegate} which allows you to easily enable Fabric and Concurrent React
